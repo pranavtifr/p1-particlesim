@@ -2,7 +2,8 @@
 #include "fastjet/PseudoJet.hh"
 #include "fastjet/ClusterSequence.hh"
 #include "fastjet/contrib/SoftDrop.hh"
-void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *particle_status,Int_t n_event_size ,TH1 *e2,double *a){
+void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *particle_status,
+        Int_t n_event_size ,std::vector<float> &e2,double *a){
   std::ifstream fjetin("settings-fastjet.txt");
   double alpha = a[0];
   double z_cut = a[1];
@@ -73,7 +74,7 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
     for( unsigned iconst = 0;iconst < constituents.size();iconst++){
     e_2 += constituents[iconst].pt()/soft_jets[ijet].pt() * pow(soft_jets[ijet].delta_R(constituents[iconst])/Rparam,alpha);
     }
-   e2->Fill(-log(e_2));
+   e2.push_back(-log(e_2));
   }//Jet Constituent Loop 
  }//Event Loop
 }//Function Ends here
