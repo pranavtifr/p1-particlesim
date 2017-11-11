@@ -12,8 +12,8 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
   std::vector <fastjet::PseudoJet> fjInputs;
   double Rparam = 0.4;
   fastjet::Strategy               strategy = fastjet::Best;
-  fastjet::RecombinationScheme    recombScheme = fastjet::E_scheme;
-  fastjet::JetDefinition jetDef = fastjet::JetDefinition(fastjet::kt_algorithm, Rparam,
+  fastjet::RecombinationScheme    recombScheme = fastjet::WTA_pt_scheme;
+  fastjet::JetDefinition jetDef = fastjet::JetDefinition(fastjet::antikt_algorithm, Rparam,
                                       recombScheme, strategy);
 
     // Reset Fastjet input
@@ -39,7 +39,6 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
       std::cout << "Ran " << jetDef.description() << std::endl;
       std::cout << "Strategy adopted by FastJet was "
                 << clustSeq.strategy_string() << std::endl << std::endl;
-      //fj = false;
     }
     std::vector<fastjet::PseudoJet> jets = fastjet::sorted_by_pt(clustSeq.inclusive_jets(0.0));
   
@@ -53,19 +52,11 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
     
     assert(sd_jet != 0); //because soft drop is a groomer (not a tagger), it should always return a soft-dropped jet
     soft_jets_temp.push_back(sd_jet); 
-    /*
-    if(iEvent% print_freq == 0 ){
-    std::cout << "original    jet: " << jets[ijet].E()<<","<<jets[ijet].px() <<","<< jets[ijet].py()<<"," <<jets[ijet].pz() <<std::endl;
-    std::cout << "soft  jet: " <<sd_jet.E()<<","<<sd_jet.px() <<","<< sd_jet.py()<<"," <<sd_jet.pz() <<std::endl;
-    std::cout << "  delta_R between subjets: " << sd_jet.structure_of<fastjet::contrib::SoftDrop>().delta_R() << std::endl;
-    std::cout << "  symmetry measure(z):     " << sd_jet.structure_of<fastjet::contrib::SoftDrop>().symmetry() << std::endl;
-    std::cout << "  mass drop(mu):           " << sd_jet.structure_of<fastjet::contrib::SoftDrop>().mu() << std::endl;
-    }
-    */
     //Softdrop loop
   }
 // Calculating e_2
-  std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(soft_jets_temp);
+    fastjet::ClusterSequence clustSeq2(soft_jets_temp, jetDef);
+  std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(clustSeq2.inclusive_jets(0.0));
   double e_2 = 0;
   for( unsigned ijet = 0; ijet < soft_jets.size();ijet++){
     if(soft_jets[ijet].pt() < ptcutoff) continue;

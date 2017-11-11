@@ -29,6 +29,7 @@ void EventLoop(T &event,std::vector<float> &e2,double *a,int &taskid,int &numtas
    MPI_Comm_rank(MPI_COMM_WORLD,&taskid);
    Long64_t chunksize = nentries/numtasks;
    //Care is not taken to take all the events. The events are equally distributed to the processes and the left over is discarded.
+   //So if no process should be discarded then the number of processes should be a divisor of the number of events
    for (Long64_t k = 0; k<chunksize;k++) {
      Long64_t jentry = (taskid*chunksize) +  k ;
      if(jentry%100 == 0){
@@ -36,7 +37,6 @@ void EventLoop(T &event,std::vector<float> &e2,double *a,int &taskid,int &numtas
          " in the process "<<std::setw(2)<<taskid<<std::setw(5)<<"("<<(k*100.0)/chunksize<<"% )"<<std::endl;}
      event.GetEntry(jentry);
      root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_size,e2,a);
-   //  std::cout<<jentry<<"    "<<std::endl;
    }
 
 }
@@ -73,7 +73,6 @@ int main(){
        MPI_Status status;
        MPI_Probe(k,0,MPI_COMM_WORLD,&status);
        MPI_Get_count(&status,MPI_FLOAT,&incoming_size);
-       std::cout<<"Incoming Size   :"<<incoming_size<<std::endl;
        e2_temp.resize(incoming_size);
        MPI_Recv(&e2_temp.front(),incoming_size,MPI_FLOAT,k,0,MPI_COMM_WORLD,MPI_STATUS_IGNORE);
        e2_main.insert(e2_main.end(),e2_temp.begin(),e2_temp.end());
