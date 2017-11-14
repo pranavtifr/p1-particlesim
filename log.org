@@ -1,0 +1,8 @@
+* 2017 
+** 2017-11 November
+*** 2017-11-14 Tuesday 
+**** Setting things up
+     :LOGBOOK:
+     - Note taken on [2017-11-14 Tue 07:26] \\
+       Created a git hub repository and set things up for easy communication
+     :END:

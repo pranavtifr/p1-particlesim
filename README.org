@@ -1,4 +1,54 @@
-#+CAPTION: I'll insert this later
+* Pythia Settings
+ The processes chosen were 
+
+
+ \[q \bar{q} \rightarrow Z + g \]
+and,
+
+\[q + g \rightarrow Z + q\]
+
+More details on the settings can be seen at [[./process-generation-code/settings-qgZ.cmnd]]
+Number of Events = 10000
+* FastJet Settings
+These plots were produced after the events are generated in pythia and then
+clustered into jets using anti-kt algorithm using E-Scheme
+** Grooming
+   The jets were groomed using Soft-Drop algorithm
+
+** E_2
+  This was the formula used for the Calculating e2
+  
+
+ \[e_2 = \Sigma_{j \in jet} z_i \theta_i^2\]
+Where,
+
+\[z_i \equiv \frac{p_{Ti}}{\Sigma_{j \in jet} p_{Tj} }\quad \theta_i =\frac{ R_{i \hat{n}}}{R}\]
+
+Reference for the formula of e_2 [[https://arxiv.org/pdf/1704.03878.pdf]]
+* Plots
+ For all the plots the histogram of e_2 was plotted in a logarithmic scale
+** Reclustering after softdrop with the default CA algo.
+*** Gluons
+#+CAPTION: -log(e2) for Gluon jets
 #+NAME: fig:-log(e2)
 [[./plots/1e4/log_e2_gluon.jpg]]
 
+*** Quarks
+#+CAPTION: -log(e2) for Quark jets
+#+NAME: fig:-log(e2)
+[[./plots/1e4/log_e2_quark.jpg]]
+
+
+** Reclustering after softdrop using anti_kt again.
+
+*** Gluons
+#+CAPTION: -log(e2) for Gluon initiated jets
+#+NAME: fig:-log(e2)
+[[./plots/1e4/log_e2_gluon_reclu.jpg]]
+
+*** Quarks
+#+CAPTION: -log(e2) for Gluon initiated jets
+#+NAME: fig:-log(e2)
+[[./plots/1e4/log_e2_quark_reclu.jpg]]
+* LOG
+I have created a file called [[./log.org]] . Progress will be updated there.
