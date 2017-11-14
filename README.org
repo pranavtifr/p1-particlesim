@@ -1,0 +1,4 @@
+#+CAPTION: I'll insert this later
+#+NAME: fig:-log(e2)
+[[./plots/1e4/log_e2_gluon.jpg]]
+
