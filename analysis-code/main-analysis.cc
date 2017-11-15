@@ -99,7 +99,5 @@ void hist_to_file(TH1 *e2_hist,double *a){
      std::string file;
      file = filename.str();
      TFile *f = new TFile(file.c_str(),"RECREATE");
-     TCanvas *c1= new TCanvas("c1","e2",600,400);
-     e2_hist->Draw();
-     f->WriteTObject(c1,"e2");
+     f->WriteTObject(e2_hist,"e2_hist");
 }

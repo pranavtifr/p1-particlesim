@@ -6,3 +6,9 @@
      - Note taken on [2017-11-14 Tue 07:26] \\
        Created a git hub repository and set things up for easy communication
      :END:
+*** 2017-11-15 Wednesday
+**** Started Writing ROC Curve code for Future use
+     :LOGBOOK:
+     - Added [2017-11-15 Wed 06:22]
+     - 
+     :END:
