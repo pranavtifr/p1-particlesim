@@ -36,7 +36,7 @@ void EventLoop(T &event,std::vector<float> &e2,double *a,int &taskid,int &numtas
      std::cout<<std::setw(15)<<"Gathering event  "<<std::setw(10)<<jentry<<std::setw(15)<<
          " in the process "<<std::setw(2)<<taskid<<std::setw(5)<<"("<<(k*100.0)/chunksize<<"% )"<<std::endl;}
      event.GetEntry(jentry);
-     root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_size,e2,a);
+     root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
    }
 
 }
@@ -99,5 +99,7 @@ void hist_to_file(TH1 *e2_hist,double *a){
      std::string file;
      file = filename.str();
      TFile *f = new TFile(file.c_str(),"RECREATE");
-     f->WriteTObject(e2_hist,"e2_hist");
+     TCanvas *c1= new TCanvas("c1","e2",600,400);
+     e2_hist->Draw();
+     f->WriteTObject(c1,"e2_hist");
 }

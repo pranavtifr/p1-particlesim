@@ -12,3 +12,11 @@
      - Added [2017-11-15 Wed 06:22]
      - 
      :END:
+**** Corrected Z tracking mistake
+     :LOGBOOK:
+     - Added [2017-11-15 Wed 12:44]
+     - Based on toushik said i corrected the mistake of tracking the 
+       muons from the z bosons.
+        and also only the hardest jet is considered now.
+        
+     :END:

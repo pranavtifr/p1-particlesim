@@ -2,7 +2,7 @@
 #include "fastjet/PseudoJet.hh"
 #include "fastjet/ClusterSequence.hh"
 #include "fastjet/contrib/SoftDrop.hh"
-void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *particle_status,
+void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *particle_status,Int_t *particle_PID,
         Int_t n_event_size ,std::vector<float> &e2,double *a){
   std::ifstream fjetin("settings-fastjet.txt");
   double alpha = a[0];
@@ -22,12 +22,12 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
     // Loop over event record to decide what to pass to FastJet
     for (int i = 0; i < n_event_size; ++i) {
       // Store as input to Fastjet
-      if(particle_status[i] == 1){
+      if((particle_status[i] == 1)&&(std::abs(particle_PID[i]) != 13) ){
       fjInputs.push_back( fastjet::PseudoJet( px[i],py[i],pz[i],e[i]));
     }
 
     if (fjInputs.size() == 0) {
-      std::cout << "Error: event with no final state particles" << std::endl;
+      //std::cout << "Error: event with no final state particles" << std::endl;
       continue;
     }
 
@@ -56,9 +56,9 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
     //Softdrop loop
   }
 // Calculating e_2
-    fastjet::ClusterSequence clustSeq2(soft_jets_temp, jetDef);
- // std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(clustSeq2.inclusive_jets(0.0));
-  std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(soft_jets_temp);
+   //fastjet::ClusterSequence clustSeq2(soft_jets_temp, jetDef);
+  //std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(clustSeq2.inclusive_jets(0.0));
+   std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(soft_jets_temp);
   double e_2 = 0;
   for( unsigned ijet = 0; ijet < soft_jets.size();ijet++){
     if(soft_jets[ijet].pt() < ptcutoff) continue;
@@ -68,6 +68,7 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
     e_2 += constituents[iconst].pt()/soft_jets[ijet].pt() * pow(soft_jets[ijet].delta_R(constituents[iconst])/Rparam,alpha);
     }
    e2.push_back(-log(e_2));
+   break;
   }//Jet Constituent Loop 
  }//Event Loop
 }//Function Ends here
