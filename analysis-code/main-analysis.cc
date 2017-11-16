@@ -55,7 +55,12 @@ int main(){
      fjetin>>a[2];
      fjetin>>a[3];
    if(taskid == MASTER_MPI){
-     std::cout<<"SETTINGS:   "<<a[0]<<"_"<<a[1]<<"_"<<a[2]<<"_"<<a[3]<<".root"<<std::endl;
+     std::cout<<"SETTINGS:   "<<std::endl<<
+       "Alpha   :"<<a[0]<<std::endl<<
+       "Z cut    :"<<a[1]<<std::endl<<
+       "Beta    :"<<a[2]<<std::endl<<
+       "Pt Min   :"<<a[3]<<std::endl;
+   std::cout<<"Number of tasks   "<<numtasks<<std::endl;
    }
    std::vector<float> e2;
   dataevents::event t;

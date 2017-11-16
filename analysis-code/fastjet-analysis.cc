@@ -10,7 +10,7 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
   double beta  = a[2];
   double ptcutoff = a[3];
   std::vector <fastjet::PseudoJet> fjInputs;
-  double Rparam = 0.4;
+  double Rparam = 0.8;
   fastjet::Strategy               strategy = fastjet::Best;
   fastjet::RecombinationScheme    recombScheme = fastjet::E_scheme;
   //fastjet::RecombinationScheme    recombScheme = fastjet::WTA_pt_scheme;
@@ -25,10 +25,10 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
       if((particle_status[i] == 1)&&(std::abs(particle_PID[i]) != 13) ){
       fjInputs.push_back( fastjet::PseudoJet( px[i],py[i],pz[i],e[i]));
     }
-
+   }//Event Loop
     if (fjInputs.size() == 0) {
-      //std::cout << "Error: event with no final state particles" << std::endl;
-      continue;
+      std::cout << "Error: event with no final state particles" << std::endl;
+      return;
     }
 
     // Run Fastjet algorithm
@@ -56,9 +56,15 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
     //Softdrop loop
   }
 // Calculating e_2
-   //fastjet::ClusterSequence clustSeq2(soft_jets_temp, jetDef);
-  //std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(clustSeq2.inclusive_jets(0.0));
-   std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(soft_jets_temp);
+  // Reclustering  Params
+  Rparam = 0.8;
+  strategy = fastjet::Best;
+  recombScheme = fastjet::WTA_pt_scheme;
+  jetDef = fastjet::JetDefinition(fastjet::cambridge_algorithm, Rparam,
+                                      recombScheme, strategy);
+   fastjet::ClusterSequence clustSeq2(soft_jets_temp, jetDef);
+  std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(clustSeq2.inclusive_jets(0.0));
+  // std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(soft_jets_temp);
   double e_2 = 0;
   for( unsigned ijet = 0; ijet < soft_jets.size();ijet++){
     if(soft_jets[ijet].pt() < ptcutoff) continue;
@@ -70,6 +76,5 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
    e2.push_back(-log(e_2));
    break;
   }//Jet Constituent Loop 
- }//Event Loop
 }//Function Ends here
 

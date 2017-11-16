@@ -20,3 +20,10 @@
         and also only the hardest jet is considered now.
         
      :END:
+*** 2017-11-16 Thursday
+**** Fixed the event bug
+     :LOGBOOK:
+     - Added [2017-11-16 Thu 12:28]
+     - There was this bug where all the events were taken again and 
+       again instead of just once
+     :END:
