@@ -37,17 +37,5 @@ Reference for the formula of e_2 [[https://arxiv.org/pdf/1704.03878.pdf]]
 ### Gluons
 ![](./plots/1e5/zcut_0.2_beta_2/log_e2_gluons.jpg)
 
-# Using different parameters
-using R = 0.8
-
-Z_cut = 0.1 and beta = 0.1
-
-and recluster using CA and WTA
-
-### Quarks
-
-![](./plots/1e5/zcut_0.1_beta_1/quarks.jpg)
-### Gluons
-![](./plots/1e5/zcut_0.1_beta_1/gluons.jpg)
 # LOG
 I have created a file called ![log.org](./log.org) . Progress will be updated there.

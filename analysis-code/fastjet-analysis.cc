@@ -57,14 +57,15 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
   }
 // Calculating e_2
   // Reclustering  Params
-  Rparam = 0.8;
+  /*Rparam = 0.8;
   strategy = fastjet::Best;
   recombScheme = fastjet::WTA_pt_scheme;
   jetDef = fastjet::JetDefinition(fastjet::cambridge_algorithm, Rparam,
                                       recombScheme, strategy);
    fastjet::ClusterSequence clustSeq2(soft_jets_temp, jetDef);
   std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(clustSeq2.inclusive_jets(0.0));
-  // std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(soft_jets_temp);
+  */
+   std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(soft_jets_temp);
   double e_2 = 0;
   for( unsigned ijet = 0; ijet < soft_jets.size();ijet++){
     if(soft_jets[ijet].pt() < ptcutoff) continue;
