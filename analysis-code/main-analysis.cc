@@ -103,8 +103,10 @@ void hist_to_file(TH1 *e2_hist,double *a){
      filename<<"histos_"<<a[0]<<"_"<<a[1]<<"_"<<a[2]<<"_"<<a[3]<<".root";
      std::string file;
      file = filename.str();
-     TFile *f = new TFile(file.c_str(),"RECREATE");
-     TCanvas *c1= new TCanvas("c1","e2",600,400);
-     e2_hist->Draw();
-     f->WriteTObject(c1,"e2_hist");
+     //TFile *f = new TFile(file.c_str(),"RECREATE");
+      TFile f(file.c_str(),"RECREATE");
+ //    TCanvas *c1= new TCanvas("c1","e2",600,400);
+//     e2_hist->Draw();
+  //   f->WriteTObject(c1,"e2_hist");
+    e2_hist->Write();
 }
