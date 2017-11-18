@@ -31,11 +31,26 @@ Where,
 Reference for the formula of e_2 [[https://arxiv.org/pdf/1704.03878.pdf]]
 # Plots
  For all the plots the histogram of e_2 was plotted in a logarithmic scale
+
 ##Reclustering after softdrop with the default CA algo.
+
 ### Quarks
 ![](./plots/1e5/zcut_0.2_beta_2/log_e2_quarks.jpg)
 ### Gluons
 ![](./plots/1e5/zcut_0.2_beta_2/log_e2_gluons.jpg)
+
+## Varying the Value of Alpha_S in timelike showers 
+
+For the Blue Lines Alpha_S = 0.1
+
+For the Red Lines Alpha_S = 0.1383
+
+For the Black Lines Alpha_S = 0.16
+### Quarks
+![](./plots/alphaSplots/quarks_alpha_S.jpg)
+
+### Gluons
+![](./plots/alphaSplots/gluons_alpha_S.jpg)
 
 # LOG
 I have created a file called ![log.org](./log.org) . Progress will be updated there.

@@ -1,0 +1,24 @@
+# Overall Settings
+Main:numberOfEvents = 100000
+
+
+
+# Beam Details
+Beams:idA = 2212
+Beams:idB = 2212
+Beams:eCM = 13000
+
+#Phase Space Cuts
+PhaseSpace:pTHatMin = 400
+
+TimeShower:alphaSvalue = 0.1
+# Process Details
+  23:onMode = off
+  23:onIfAny = 13
+  WeakZ0:gmZmode = 2
+
+  WeakBosonAndParton:qqbar2gmZg = on
+ #WeakBosonAndParton:qg2gmZq = on
+ 
+
+

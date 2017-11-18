@@ -27,3 +27,10 @@
      - There was this bug where all the events were taken again and 
        again instead of just once
      :END:
+*** 2017-11-18 Saturday
+**** Drew Plots for the Varying Alpha_S
+     :LOGBOOK:
+     - Added [2017-11-18 Sat 14:10]
+     - And in the meantime added MPI Support to process generation
+       and also wrote a few script files which automate the process
+     :END:
