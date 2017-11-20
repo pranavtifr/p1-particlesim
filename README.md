@@ -29,15 +29,32 @@ Where,
 
 
 Reference for the formula of e_2 [[https://arxiv.org/pdf/1704.03878.pdf]]
+
+## Girth
+ The Formula for Girth
+
+![](http://latex.codecogs.com/svg.latex?g%20%3D%20%5Csum%5Climits_%7B%20i%20%5Cin%20jet%7D%20%5Cfrac%7Bp_T%5Ei%7D%7Bp_T%5E%7Bjet%7D%7Dr_i)
+
+We can see this is the same as the formula for e_alpha with alpha = 1 and R = 1
+
+## Tau
+ Tau was calcualted using the routine from fastjet contrib
+
 # Plots
- For all the plots the histogram of e_2 was plotted in a logarithmic scale
 
-##Reclustering after softdrop with the default CA algo.
+ For all the plots the are plotted in a logarithmic scale
 
-### Quarks
-![](./plots/1e5/zcut_0.2_beta_2/log_e2_quarks.jpg)
-### Gluons
-![](./plots/1e5/zcut_0.2_beta_2/log_e2_gluons.jpg)
+For all the Plots the blue lines represent the Gluons and the Red lines represent the Quarks
+## Reclustering after softdrop with the defafault CA Algo
+
+### E2
+
+![](./plots/e2.png)
+### Girth
+![](./plots/girth.png)
+### SubJettiness
+Normalized with Jet size of 0.6 and Beta = 0.5
+![](./plots/tau.png)
 
 ## Varying the Value of Alpha_S in timelike showers 
 

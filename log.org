@@ -34,3 +34,10 @@
      - And in the meantime added MPI Support to process generation
        and also wrote a few script files which automate the process
      :END:
+*** 2017-11-20 Monday
+**** Did plots for e2 and girth 
+     :LOGBOOK:
+     - Added [2017-11-20 Mon 10:34]
+     - Also made plots in such a way that the plots of both quarks and gluons
+       are in the same image
+     :END:

@@ -84,7 +84,7 @@ int main(){
      }
      std::cout<<"Size of main    :"<<e2_main.size()<<std::endl;
      std::cout<<"Max Size of main    :"<<e2_main.max_size()<<std::endl;
-     TH1 *e2_hist = new TH1F("e2","e2",50,0,14);
+     TH1 *e2_hist = new TH1F("hist","hist",50,0,14);
      add_to_hist(e2_main,e2_hist);
      hist_to_file(e2_hist,a);
   } 
