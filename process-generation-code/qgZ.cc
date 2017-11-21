@@ -1,6 +1,3 @@
-/*
- *
- */
 #include "mpi.h"
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -45,20 +42,9 @@ int main() {
 
   // Begin event loop. Generate event. Skip if error.
   for (int iEvent = 0; iEvent < nEvent; ++iEvent) {
-     if(iEvent % print_freq == 0) cout<<"iEvent = "<<iEvent<<endl;
+     if(iEvent % print_freq == 0) cout<<"iEvent = "<<iEvent<<"   From    "<<taskid<<"     ("<<1.0*iEvent/nEvent<<")"<<endl;
     if (!pythia.next()) continue;
 
-    int idxW = -1;
-    for (int i = pythia.event.size() - 1; i > 0; i--) {
-      if (pythia.event[i].idAbs() == 23) {
-        idxW = i;
-        break;
-      }
-    }
-    if (idxW == -1) {
-      cout << "Error: Could not find Z" << endl;
-      continue;
-    }
 
  //Allocate this dynamically if the events tend to be huge 
     HepMC::GenEvent *hepmcevent = new HepMC::GenEvent();
@@ -68,7 +54,7 @@ int main() {
  //Event loop done
   }
   if(taskid == 0){ pythia.stat();}
-  unlink(file.c_str());
+  //unlink(file.c_str());
   MPI_Finalize();
   return 0;
 }

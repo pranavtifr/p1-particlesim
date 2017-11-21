@@ -56,7 +56,6 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
   for (unsigned ijet = 0; ijet < jets.size(); ijet++) {
     // Run SoftDrop and examine the output
     fastjet::PseudoJet sd_jet = sd(jets[ijet]);
-    //fastjet::PseudoJet sd_jet = jets[ijet];
     assert(sd_jet != 0);
     soft_jets_temp.push_back(sd_jet); 
     //Softdrop loop
@@ -76,8 +75,8 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
   for( unsigned ijet = 0; ijet < soft_jets.size();ijet++){
     if(soft_jets[ijet].pt() < ptcutoff) continue;
      //e_2 = e_alpha(soft_jets[ijet],Rparam,alpha);
-     //e_2 = Nsubjet(soft_jets[ijet]);
-     e_2 = girth(soft_jets[ijet]);
+     e_2 = Nsubjet(soft_jets[ijet]);
+     //e_2 = girth(soft_jets[ijet]);
      e2.push_back(-log(e_2));
      break;
   }//Jet Constituent Loop 

@@ -69,5 +69,13 @@ For the Black Lines Alpha_S = 0.16
 ### Gluons
 ![](./plots/alphaSplots/gluons_alpha_S.jpg)
 
+## Plotting with the Ecal data 
+### E2
+![](./plots/e2-eflow.png)
+### Girth 
+![](./plots/girth-eflow.png)
+### Subjettiness
+![](./plots/tau-eflow.png)
+
 # LOG
 I have created a file called ![log.org](./log.org) . Progress will be updated there.

@@ -2,8 +2,8 @@ void root_code(){
   TCanvas *c1 = new TCanvas("c1","c1",800,500);
   //gStyle->SetOptStat(kFALSE);
   //Load the files
-  TFile *_file1 = TFile::Open("../plots/tau/gluon_1e5_13tev.root");
-  TFile *_file2 = TFile::Open("../plots/tau/quark_1e5_13tev.root");
+  TFile *_file1 = TFile::Open("../plots/tau/gluon_1e5_13tev-eflow.root");
+  TFile *_file2 = TFile::Open("../plots/tau/quark_1e5_13tev-eflow.root");
   //Get the Histograms
   TH1F *h1 = (TH1F*)_file1->Get("hist");
   TH1F *h2 = (TH1F*)_file2->Get("hist");

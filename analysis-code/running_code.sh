@@ -4,7 +4,7 @@ if [ -f "event.root" ]; then
   rm event.*
 fi
 
-for f in ~/work-stuff/data/*_1e5_13tev.root
+for f in ~/work-stuff/data/*_1e5_13tev-eflow.root
 do
   echo "$f"
   ln -s $f ./event.root
@@ -20,5 +20,5 @@ echo "removing root_files.."
 rm ../plots/tau/*
 display plot.png
 echo "moving plots"
-mv plot.png ../plots/girth.png
+mv plot.png ../plots/tau-eflow.png
 echo "Done"

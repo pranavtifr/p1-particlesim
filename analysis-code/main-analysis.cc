@@ -21,6 +21,7 @@ namespace dataevents {
 
 void add_to_hist(std::vector<float> e2_main,TH1 *e2_hist);
 void hist_to_file(TH1 *e2,double *a);
+void eflow_analysis(Float_t *ET,Float_t *eta,Float_t *phi,Float_t *E,Int_t size,std::vector<float> &e2,double *a);
 template <typename T>
 void EventLoop(T &event,std::vector<float> &e2,double *a,int &taskid,int &numtasks)
 {
@@ -36,11 +37,27 @@ void EventLoop(T &event,std::vector<float> &e2,double *a,int &taskid,int &numtas
      std::cout<<std::setw(15)<<"Gathering event  "<<std::setw(10)<<jentry<<std::setw(15)<<
          " in the process "<<std::setw(2)<<taskid<<std::setw(5)<<"("<<(k*100.0)/chunksize<<"% )"<<std::endl;}
      event.GetEntry(jentry);
-     root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
+     //root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
+     eflow_analysis(event.eflow_ET,event.eflow_Eta,event.eflow_Phi,event.eflow_E,event.eflow_size,e2,a); 
    }
 
 }
+void eflow_analysis(Float_t *ET,Float_t *eta,Float_t *phi,Float_t *E,Int_t size,std::vector<float> &e2,double *a){
+  Float_t px[size];
+  Float_t py[size];
+  Float_t pz[size];
+  Int_t status[size];
+  Int_t PID[size];
+  for(int i=0;i<size;i++){
+    px[i] = ET[i]*std::cos(phi[i]);
+    py[i] = ET[i]*std::sin(phi[i]);
+    pz[i] = ET[i]*std::sinh(eta[i]);
+    status[i] = 1;
+    PID[i] = 0;
+  }
+   root_to_fastjet(px,py,pz,E,status,PID,size,e2,a);
 
+}
 
 //Main Function
 int main(){
