@@ -74,6 +74,7 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
   double e_2 = 42;
   for( unsigned ijet = 0; ijet < soft_jets.size();ijet++){
     if(soft_jets[ijet].pt() < ptcutoff) continue;
+    if((soft_jets[ijet].m() < 100) && (soft_jets[ijet].m() > 80)) continue;
      //e_2 = e_alpha(soft_jets[ijet],Rparam,alpha);
      e_2 = Nsubjet(soft_jets[ijet]);
      //e_2 = girth(soft_jets[ijet]);
