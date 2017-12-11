@@ -77,5 +77,13 @@ For the Black Lines Alpha_S = 0.16
 ### Subjettiness
 ![](./plots/tau-eflow.png)
 
+# JetImages
+Jet Images were created based on references from these papers ![this](https://arxiv.org/abs/1511.05190) and ![this](https://arxiv.org/abs/1407.5675)
+
+Seen below are the JetImages for Quark and Gluons. These images are pre-processed in such a way that the hardest jet is always centered to the center.
+
+The JetImages seen below are average jet images over all the events.
+
+![jetimage](./plotting-code/jet_image.png)
 # LOG
 I have created a file called ![log.org](./log.org) . Progress will be updated there.

@@ -5,9 +5,44 @@
 #include "fastjet/contrib/Njettiness.hh"
 #include "fastjet/contrib/NjettinessPlugin.hh"
 #include "fastjet/contrib/Nsubjettiness.hh"
+#define RES 25 //Image resolution //Give an odd number
+#define PI 3.1415
+#define RANGE 0.5
 double girth(fastjet::PseudoJet this_jet);
 double Nsubjet(fastjet::PseudoJet this_jet);
 double e_alpha(fastjet::PseudoJet this_jet,double Rparam,double alpha);
+
+void jet_imagemaker(fastjet::PseudoJet jet){
+  std::vector<fastjet::PseudoJet> jetconst = fastjet::sorted_by_pt(jet.constituents());
+  double image[RES*RES];
+  for(int i=0;i<RES;i++){
+    for(int j=0;j<RES;j++){
+      image[i*RES+ j] = 0;
+    }
+  }
+ 
+  image[(RES/2)*RES + RES/2] = jetconst[0].pt();
+  for(int k=1;k<jetconst.size();k++){
+    int i = RES/2 +  int((jetconst[k].eta() - jetconst[0].eta() )/RANGE*RES);
+    int j = RES/2 + int((jetconst[k].phi_std() - jetconst[0].phi_std() )/RANGE*RES);
+    if( i >= 0 && j >=0 && i<RES && j<RES ){
+      image[i*RES + j] += jetconst[k].pt();
+    }
+    else{
+      continue;}
+  }
+  std::ofstream f("images.txt",std::ios::app); 
+  for(int i=0;i<RES;i++){
+  for(int j=0;j<RES;j++){
+    f<<image[i*RES + j]<<"\t";
+  }
+  }
+  f<<std::endl;
+      //      std::vector<double> img;
+    //for(int i=0;i<RES*RES;i++)
+      
+
+}
 void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *particle_status,Int_t *particle_PID,
         Int_t n_event_size ,std::vector<float> &e2,double *a){
   std::ifstream fjetin("settings-fastjet.txt");
@@ -74,10 +109,13 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
   double e_2 = 42;
   for( unsigned ijet = 0; ijet < soft_jets.size();ijet++){
     if(soft_jets[ijet].pt() < ptcutoff) continue;
-    if((soft_jets[ijet].m() < 100) && (soft_jets[ijet].m() > 80)) continue;
-     //e_2 = e_alpha(soft_jets[ijet],Rparam,alpha);
+    //if((soft_jets[ijet].m() < 100) && (soft_jets[ijet].m() > 80)) continue;
+    jet_imagemaker(soft_jets[ijet]);
+     e_2 = e_alpha(soft_jets[ijet],Rparam,alpha);
+     e2.push_back(-log(e_2));
      e_2 = Nsubjet(soft_jets[ijet]);
-     //e_2 = girth(soft_jets[ijet]);
+     e2.push_back(-log(e_2));
+     e_2 = girth(soft_jets[ijet]);
      e2.push_back(-log(e_2));
      break;
   }//Jet Constituent Loop 

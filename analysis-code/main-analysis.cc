@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <iomanip>
 #include <vector>
 #include <sstream>
@@ -19,6 +20,7 @@ namespace dataevents {
 #include "event.C"
 }
 
+void write_to_file(std::vector<float> e2_main);
 void add_to_hist(std::vector<float> e2_main,TH1 *e2_hist);
 void hist_to_file(TH1 *e2,double *a);
 void eflow_analysis(Float_t *ET,Float_t *eta,Float_t *phi,Float_t *E,Int_t size,std::vector<float> &e2,double *a);
@@ -37,8 +39,8 @@ void EventLoop(T &event,std::vector<float> &e2,double *a,int &taskid,int &numtas
      std::cout<<std::setw(15)<<"Gathering event  "<<std::setw(10)<<jentry<<std::setw(15)<<
          " in the process "<<std::setw(2)<<taskid<<std::setw(5)<<"("<<(k*100.0)/chunksize<<"% )"<<std::endl;}
      event.GetEntry(jentry);
-     //root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
-     eflow_analysis(event.eflow_ET,event.eflow_Eta,event.eflow_Phi,event.eflow_E,event.eflow_size,e2,a); 
+     root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
+     //eflow_analysis(event.eflow_ET,event.eflow_Eta,event.eflow_Phi,event.eflow_E,event.eflow_size,e2,a); 
    }
 
 }
@@ -72,6 +74,8 @@ int main(){
      fjetin>>a[2];
      fjetin>>a[3];
    if(taskid == MASTER_MPI){
+     std::ofstream f("images.txt");
+     f.close();
      std::cout<<"SETTINGS:   "<<std::endl<<
        "Alpha   :"<<a[0]<<std::endl<<
        "Z cut    :"<<a[1]<<std::endl<<
@@ -101,13 +105,22 @@ int main(){
      }
      std::cout<<"Size of main    :"<<e2_main.size()<<std::endl;
      std::cout<<"Max Size of main    :"<<e2_main.max_size()<<std::endl;
-     TH1 *e2_hist = new TH1F("hist","hist",50,0,14);
-     add_to_hist(e2_main,e2_hist);
-     hist_to_file(e2_hist,a);
+     //TH1 *e2_hist = new TH1F("hist","hist",50,0,14);
+     //add_to_hist(e2_main,e2_hist);
+     //hist_to_file(e2_hist,a);
+     write_to_file(e2_main);
   } 
   MPI_Finalize();
 }
-
+void write_to_file(std::vector<float> e2_main){
+  std::ofstream file;
+  file.open("data.txt");
+    for(int i=0;i<e2_main.size();i++){
+    if(i%3 == 0) file<<std::endl;
+    file<<e2_main[i]<<",";
+    }
+  std::cout<<"Written to file"<<std::endl;
+}
 void add_to_hist(std::vector<float> e2_main,TH1 *e2_hist){
      for(int n=0;n<e2_main.size();n++){
        e2_hist->Fill(e2_main[n]);

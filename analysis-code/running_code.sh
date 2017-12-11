@@ -4,21 +4,33 @@ if [ -f "event.root" ]; then
   rm event.*
 fi
 
-for f in ~/work-stuff/data/*_1e5_13tev-eflow.root
+for f in ~/work-stuff/data/*_1e5_13tev.root
 do
   echo "$f"
   ln -s $f ./event.root
+  echo "Files Linked"
   sleep 5
   MakeClass event.root
+  echo "Class Made"
   hepgcc main-analysis.cc
+  echo "Compiled"
   mpiexec -np 16 ./a.out
-  mv histos_2_0.2_2_500.root ../plots/tau/$(basename "$f")
+  filename=$(basename "$f")
+  #mv histos_2_0.2_2_500.root ../plots/tau/$filename
+  ext='.txt'
+  img='.img'
+  filename="${filename%.*}"
+  txtname=$filename$ext
+  imgname=$filename$img
+  mv data.txt ../$txtname
+  mv images.txt ../plotting-code/$imgname
   rm event.*
 done
-root -l root_code.C
-echo "removing root_files.."
-rm ../plots/tau/*
-display plot.png
-echo "moving plots"
-mv plot.png ../plots/tau-eflow.png
-echo "Done"
+echo "Running Code Done"
+#root -l root_code.C
+#echo "removing root_files.."
+#rm ../plots/tau/*
+#display plot.png
+#echo "moving plots"
+#mv plot.png ../plots/tau-eflow.png
+#echo "Done"

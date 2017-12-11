@@ -41,3 +41,12 @@
      - Also made plots in such a way that the plots of both quarks and gluons
        are in the same image
      :END:
+** 2017-12 December
+*** 2017-12-12 Tuesday
+**** Wrote code for JetImages
+     :LOGBOOK:
+     - Added [2017-12-12 Tue 00:37]
+     - JetImages are drawn and updated. Next Goal is to rewrite the 
+       code of the histograms in MatPlotLib
+       And also to use neural networks to discriminate based on JetImages
+     :END:
