@@ -5,7 +5,7 @@
 #include "fastjet/contrib/Njettiness.hh"
 #include "fastjet/contrib/NjettinessPlugin.hh"
 #include "fastjet/contrib/Nsubjettiness.hh"
-#define RES 25 //Image resolution //Give an odd number
+#define RES 28 //Image resolution //Give an odd number
 #define PI 3.1415
 #define RANGE 0.5
 double girth(fastjet::PseudoJet this_jet);
@@ -38,9 +38,6 @@ void jet_imagemaker(fastjet::PseudoJet jet){
   }
   }
   f<<std::endl;
-      //      std::vector<double> img;
-    //for(int i=0;i<RES*RES;i++)
-      
 
 }
 void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *particle_status,Int_t *particle_PID,

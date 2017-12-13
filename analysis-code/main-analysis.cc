@@ -117,7 +117,7 @@ void write_to_file(std::vector<float> e2_main){
   file.open("data.txt");
     for(int i=0;i<e2_main.size();i++){
     if(i%3 == 0) file<<std::endl;
-    file<<e2_main[i]<<",";
+    file<<e2_main[i]<<"\t";
     }
   std::cout<<"Written to file"<<std::endl;
 }

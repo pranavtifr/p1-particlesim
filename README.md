@@ -78,12 +78,20 @@ For the Black Lines Alpha_S = 0.16
 ![](./plots/tau-eflow.png)
 
 # JetImages
-Jet Images were created based on references from these papers ![this](https://arxiv.org/abs/1511.05190) and ![this](https://arxiv.org/abs/1407.5675)
+Jet Images were created based on references from these papers (https://arxiv.org/abs/1511.05190) and (https://arxiv.org/abs/1407.5675)
 
 Seen below are the JetImages for Quark and Gluons. These images are pre-processed in such a way that the hardest jet is always centered to the center.
+If we look at the JetImages below we see that the jets for gluons are broader than the jets for quarks. 
+We knew this from the physics variables such as girth which were related to the radial moments of the jets
 
 The JetImages seen below are average jet images over all the events.
 
 ![jetimage](./plotting-code/jet_image.png)
+
+# Neural Network Classification
+Based on the JetImages provided above a neural network was employed to classify the images into 2 categories 
+A CNN got an accuracy of 55%
+Whereas a Maxout architecture neural network got an accuracy of 67%
+Further information such as ROC Curves will be updated soon
 # LOG
 I have created a file called ![log.org](./log.org) . Progress will be updated there.

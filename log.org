@@ -50,3 +50,11 @@
        code of the histograms in MatPlotLib
        And also to use neural networks to discriminate based on JetImages
      :END:
+*** 2017-12-13 Wednesday
+**** Neural Networks Constructed
+     :LOGBOOK:
+     - Added [2017-12-13 Wed 21:40]
+     - Neural Networks were constructed and tested . Further work
+       such as roc curves and decision trees based on the physics variables
+       will be done soon
+     :END:
