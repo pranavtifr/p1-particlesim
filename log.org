@@ -58,3 +58,11 @@
        such as roc curves and decision trees based on the physics variables
        will be done soon
      :END:
+*** 2017-12-15 Friday
+**** ROC Curves and Learning Rates
+     :LOGBOOK:
+     - Added [2017-12-15 Fri 05:46]
+     - Wrote codes for computing the ROC Curves and the 
+       Learning Rates
+       Working on Random Forests
+     :END:

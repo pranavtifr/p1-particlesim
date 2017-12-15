@@ -90,8 +90,25 @@ The JetImages seen below are average jet images over all the events.
 
 # Neural Network Classification
 Based on the JetImages provided above a neural network was employed to classify the images into 2 categories 
-A CNN got an accuracy of 55%
-Whereas a Maxout architecture neural network got an accuracy of 67%
-Further information such as ROC Curves will be updated soon
+## CNN Network
+A CNN got an accuracy of 65.9574%
+![roc_cnn](./tensorflow-code/roc_cnn.png)
+Now, If we Look at the Learning rates of the Network. By Plotting the Accuracy and the Loss with respect to the number of Epochs
+![acc_cnn](./tensorflow-code/acc_cnn.png)
+![loss_cnn](./tensorflow-code/loss_cnn.png)
+## FCC
+### MaxOut
+Whereas a Fully connected network with Maxout activation neural network got an accuracy of 61.31531%
+![roc_maxout](./tensorflow-code/roc_maxout.png)
+Learning Rates
+![acc_maxout](./tensorflow-code/acc_maxout.png)
+![loss_maxout](./tensorflow-code/loss_maxout.png)
+### ReLU
+and a Fully connected network with ReLU activation neural network got an accuracy of 66.7311%
+![roc_relu](./tensorflow-code/roc_relu.png)
+Learning Rates
+![acc_relu](./tensorflow-code/acc_relu.png)
+![loss_relu](./tensorflow-code/loss_relu.png)
+
 # LOG
 I have created a file called ![log.org](./log.org) . Progress will be updated there.

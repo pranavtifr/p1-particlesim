@@ -1,9 +1,9 @@
 import tensorflow as tf
 import numpy as np
 
-res = 28
+res = 56
 n_classes = 2
-
+fi = int(res/8) # Make sure you divide by 2^number of pools you do , and also make sure it divides nicely
 
 keep_rate = 0.8
 keep_prob = tf.placeholder(tf.float32)
@@ -11,10 +11,11 @@ keep_prob = tf.placeholder(tf.float32)
 
 
 def neural_network_model(x):
+  print("Convolutional Neural Network")
   weights = {'W_conv1':tf.Variable(tf.random_normal([11,11,1,32])),
              'W_conv2':tf.Variable(tf.random_normal([3,3,32,32])),
              'W_conv3':tf.Variable(tf.random_normal([3,3,32,32])),
-             'W_fc':tf.Variable(tf.random_normal([7*7*32,64])),
+             'W_fc':tf.Variable(tf.random_normal([fi*fi*32,64])),
              'out':tf.Variable(tf.random_normal([64, n_classes]))} 
   biases = {'b_conv1':tf.Variable(tf.random_normal([32])),
             'b_conv2':tf.Variable(tf.random_normal([32])),
@@ -33,15 +34,15 @@ def neural_network_model(x):
 
   conv2 = tf.nn.dropout(conv2,keep_rate)
   conv3  = tf.nn.relu(conv2d(conv2,weights['W_conv3']) + biases['b_conv3'])
-  #conv3 = maxpool2d(conv3)
+  conv3 = maxpool2d(conv3)
 
   fc = tf.nn.lrn(conv3)
-  fc = tf.reshape(fc,[-1,7*7*32])
+  fc = tf.reshape(fc,[-1,fi*fi*32])
   fc = tf.nn.dropout(fc,keep_rate)
   fc = tf.nn.relu(tf.matmul(fc,weights['W_fc']) + biases['b_fc'])
 
   fc = tf.nn.dropout(fc,keep_rate)
-  output = tf.nn.sigmoid(tf.matmul(fc,weights['out']) + biases['out'])
+  output = tf.matmul(fc,weights['out']) + biases['out']
 
   return output
 
