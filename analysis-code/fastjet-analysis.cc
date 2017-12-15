@@ -5,7 +5,7 @@
 #include "fastjet/contrib/Njettiness.hh"
 #include "fastjet/contrib/NjettinessPlugin.hh"
 #include "fastjet/contrib/Nsubjettiness.hh"
-#define RES 56 //Image resolution //Give an odd number
+#define RES 56 //Image resolution
 #define PI 3.1415
 #define RANGE 0.5
 double girth(fastjet::PseudoJet this_jet);

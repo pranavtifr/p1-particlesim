@@ -77,6 +77,15 @@ For the Black Lines Alpha_S = 0.16
 ### Subjettiness
 ![](./plots/tau-eflow.png)
 
+# Classification
+Now, Based on these Jet Variables, We try to calculate a gluon Jet and a Quark jet. The ROC Curve for such a classification is as follows
+
+## Random Forests
+![roc_forest](./plots/ml-plots/roc_forest.png)
+
+## Boosted Decision Trees
+![roc_boostedDT](./plots/ml-plots/roc_boosted_DT.png)
+
 # JetImages
 Jet Images were created based on references from these papers (https://arxiv.org/abs/1511.05190) and (https://arxiv.org/abs/1407.5675)
 
@@ -92,23 +101,32 @@ The JetImages seen below are average jet images over all the events.
 Based on the JetImages provided above a neural network was employed to classify the images into 2 categories 
 ## CNN Network
 A CNN got an accuracy of 65.9574%
-![roc_cnn](./tensorflow-code/roc_cnn.png)
+
+![roc_cnn](./plots/ml-plots/roc_cnn.png)
 Now, If we Look at the Learning rates of the Network. By Plotting the Accuracy and the Loss with respect to the number of Epochs
-![acc_cnn](./tensorflow-code/acc_cnn.png)
-![loss_cnn](./tensorflow-code/loss_cnn.png)
+
+![acc_cnn](./plots/ml-plots/acc_cnn.png)
+![loss_cnn](./plots/ml-plots/loss_cnn.png)
 ## FCC
 ### MaxOut
 Whereas a Fully connected network with Maxout activation neural network got an accuracy of 61.31531%
-![roc_maxout](./tensorflow-code/roc_maxout.png)
+
+![roc_maxout](./plots/ml-plots/roc_maxout.png)
 Learning Rates
-![acc_maxout](./tensorflow-code/acc_maxout.png)
-![loss_maxout](./tensorflow-code/loss_maxout.png)
+
+![acc_maxout](./plots/ml-plots/acc_maxout.png)
+![loss_maxout](./plots/ml-plots/loss_maxout.png)
 ### ReLU
 and a Fully connected network with ReLU activation neural network got an accuracy of 66.7311%
-![roc_relu](./tensorflow-code/roc_relu.png)
+
+![roc_relu](./plots/ml-plots/roc_relu.png)
+
 Learning Rates
-![acc_relu](./tensorflow-code/acc_relu.png)
-![loss_relu](./tensorflow-code/loss_relu.png)
+
+![acc_relu](./plots/ml-plots/acc_relu.png)
+![loss_relu](./plots/ml-plots/loss_relu.png)
+
+Now, I have to try to optimize the Hyper Parameters based on Validation sets
 
 # LOG
 I have created a file called ![log.org](./log.org) . Progress will be updated there.

@@ -66,3 +66,9 @@
        Learning Rates
        Working on Random Forests
      :END:
+*** 2017-12-16 Saturday
+**** Random Forests Code added
+     :LOGBOOK:
+     - Added [2017-12-16 Sat 00:40]
+     - Random Forests classification based on the Jet Variables
+     :END:
