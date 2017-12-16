@@ -4,7 +4,7 @@ if [ -f "event.root" ]; then
   rm event.*
 fi
 
-for f in ~/work-stuff/data/*_1e5_13tev-eflow.root
+for f in ~/work-stuff/data/*_1e5_13tev.root
 do
   echo "$f"
   ln -s $f ./event.root
@@ -22,7 +22,7 @@ do
   filename="${filename%.*}"
   txtname=$filename$ext
   imgname=$filename$img
-  mv data.txt ../$txtname
+  mv data.txt ../plotting-code/$txtname
   mv images.txt ../plotting-code/$imgname
   rm event.*
 done

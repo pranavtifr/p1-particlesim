@@ -108,7 +108,7 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
   double g = 42;
   for( unsigned ijet = 0; ijet < soft_jets.size();ijet++){
     if(soft_jets[ijet].pt() < ptcutoff) continue;
-    if((soft_jets[ijet].m() < 100) && (soft_jets[ijet].m() > 80)) continue;
+    //if((soft_jets[ijet].m() < 100) && (soft_jets[ijet].m() > 80)) continue;
     jet_imagemaker(soft_jets[ijet]);
      e_2 = e_alpha(soft_jets[ijet],Rparam,alpha);
      tau = Nsubjet(soft_jets[ijet]);

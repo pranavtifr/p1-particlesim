@@ -18,9 +18,9 @@ train_y = np.array(train_y)[:,1]
 #classifier = tf.contrib.tensor_forest.client.random_forest.TensorForestEstimator( params, model_dir="./tmp/")
 #classifier.fit(x=x_train, y=y_train)
 #classifier = tree.DecisionTreeClassifier()
-classifier = RandomForestClassifier(n_jobs = -1,verbose = 1)
+#classifier = RandomForestClassifier(n_jobs = -1,verbose = 1)
 #classifier = ExtraTreesClassifier(verbose = 1)
-#classifier = AdaBoostClassifier()
+classifier = AdaBoostClassifier()
 classifier.fit(train_x, train_y)
 
 #y_out = classifier.predict(x=x_test)

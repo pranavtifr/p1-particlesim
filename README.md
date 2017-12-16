@@ -89,7 +89,7 @@ We knew this from the physics variables such as girth which were related to the 
 
 The JetImages seen below are average jet images over all the events.
 
-![jetimage](./plotting-code/jet_image.png)
+![jetimage](./plots/jet_image.png)
 
 # Neural Network Classification
 Based on the JetImages provided above a neural network was employed to classify the images into 2 categories 
@@ -121,9 +121,7 @@ Learning Rates
 ![loss_relu](./plots/ml-plots/loss_relu.png)
 
 ## Plotting with the Ecal data 
-Here Muon results are removed in a crude way by measuring the Jet mass and Ignoring the jets with 
-mass closer to that of muons.
-
+Muons are elimated from the EFLowTracker based on PID
 Better way will be made available soon as muon discrimation is done in Delphes
 ### E2
 ![](./plots/e2-eflow.png)
@@ -142,7 +140,7 @@ Better way will be made available soon as muon discrimation is done in Delphes
 
 # JetImages
 
-![jetimage-eflow](./plotting-code/jet_image-eflow.png)
+![jetimage-eflow](./plots/jet_image-eflow.png)
 
 # Neural Network Classification
 Based on the JetImages provided above a neural network was employed to classify the images into 2 categories 

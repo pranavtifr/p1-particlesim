@@ -16,8 +16,8 @@ x = tf.placeholder('float', [None, res])
 y = tf.placeholder('float')
 
 def train_neural_network(x):
-  #prediction = convnet.neural_network_model(x)
-  prediction = fcc.neural_network_model_maxout(x)
+  prediction = convnet.neural_network_model(x)
+  #prediction = fcc.neural_network_model_maxout(x)
   #prediction = fcc.neural_network_model_relu(x)
   cost = tf.reduce_mean( tf.nn.softmax_cross_entropy_with_logits(logits=prediction,labels=y) )
   optimizer = tf.train.AdamOptimizer(learning_rate=0.001).minimize(cost)

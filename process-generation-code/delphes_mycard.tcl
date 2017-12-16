@@ -782,8 +782,12 @@ module UniqueObjectFinder UniqueObjectFinder {
 module TreeWriter TreeWriter {
 # add Branch InputArray BranchName BranchClass
   add Branch Delphes/allParticles Particle GenParticle
-  add Branch UniqueObjectFinder/jets Jets Jets
 
   add Branch EFlowMerger/eflow eflow Tower
+  add Branch HCal/eflowTracks EFlowTrack Track
 
+  add Branch UniqueObjectFinder/jets Jet Jet
+  add Branch UniqueObjectFinder/electrons Electron Electron
+  add Branch UniqueObjectFinder/photons Photon Photon
+  add Branch UniqueObjectFinder/muons Muon Muon
 }
