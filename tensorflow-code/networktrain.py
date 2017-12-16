@@ -9,16 +9,16 @@ train_x,train_y,test_x,test_y = im.create_data('quark.img','gluon.img',0.1)
 tf.logging.set_verbosity(tf.logging.DEBUG) 
 n_classes = 2
 res = 56*56 
-hm_epochs = 10
-batch_size = 400
+hm_epochs = 20
+batch_size = 500
 
 x = tf.placeholder('float', [None, res])
 y = tf.placeholder('float')
 
 def train_neural_network(x):
   #prediction = convnet.neural_network_model(x)
-  #prediction = fcc.neural_network_model_maxout(x)
-  prediction = fcc.neural_network_model_relu(x)
+  prediction = fcc.neural_network_model_maxout(x)
+  #prediction = fcc.neural_network_model_relu(x)
   cost = tf.reduce_mean( tf.nn.softmax_cross_entropy_with_logits(logits=prediction,labels=y) )
   optimizer = tf.train.AdamOptimizer(learning_rate=0.001).minimize(cost)
   correct = tf.equal(tf.argmax(prediction, 1), tf.argmax(y, 1))

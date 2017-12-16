@@ -39,8 +39,8 @@ void EventLoop(T &event,std::vector<float> &e2,double *a,int &taskid,int &numtas
      std::cout<<std::setw(15)<<"Gathering event  "<<std::setw(10)<<jentry<<std::setw(15)<<
          " in the process "<<std::setw(2)<<taskid<<std::setw(5)<<"("<<(k*100.0)/chunksize<<"% )"<<std::endl;}
      event.GetEntry(jentry);
-     root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
-     //eflow_analysis(event.eflow_ET,event.eflow_Eta,event.eflow_Phi,event.eflow_E,event.eflow_size,e2,a); 
+     //root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
+     eflow_analysis(event.eflow_ET,event.eflow_Eta,event.eflow_Phi,event.eflow_E,event.eflow_size,e2,a); 
    }
 
 }

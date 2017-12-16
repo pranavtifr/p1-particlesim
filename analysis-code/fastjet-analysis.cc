@@ -104,16 +104,23 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
   */
    std::vector<fastjet::PseudoJet> soft_jets = fastjet::sorted_by_pt(soft_jets_temp);
   double e_2 = 42;
+  double tau = 42;
+  double g = 42;
   for( unsigned ijet = 0; ijet < soft_jets.size();ijet++){
     if(soft_jets[ijet].pt() < ptcutoff) continue;
-    //if((soft_jets[ijet].m() < 100) && (soft_jets[ijet].m() > 80)) continue;
+    if((soft_jets[ijet].m() < 100) && (soft_jets[ijet].m() > 80)) continue;
     jet_imagemaker(soft_jets[ijet]);
      e_2 = e_alpha(soft_jets[ijet],Rparam,alpha);
-     e2.push_back(-log(e_2));
-     e_2 = Nsubjet(soft_jets[ijet]);
-     e2.push_back(-log(e_2));
-     e_2 = girth(soft_jets[ijet]);
-     e2.push_back(-log(e_2));
+     tau = Nsubjet(soft_jets[ijet]);
+     g = girth(soft_jets[ijet]);
+
+     if(!std::isfinite(-log(e_2))) break;
+     if(!std::isfinite(-log(tau))) break;
+     if(!std::isfinite(-log(g))) break;
+
+      e2.push_back(-log(e_2));
+      e2.push_back(-log(tau));
+      e2.push_back(-log(g));
      break;
   }//Jet Constituent Loop 
 }//Function Ends here

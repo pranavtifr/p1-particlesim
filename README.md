@@ -44,18 +44,6 @@ We can see this is the same as the formula for e_alpha with alpha = 1 and R = 1
 
  For all the plots the are plotted in a logarithmic scale
 
-For all the Plots the blue lines represent the Gluons and the Red lines represent the Quarks
-## Reclustering after softdrop with the defafault CA Algo
-
-### E2
-
-![](./plots/e2.png)
-### Girth
-![](./plots/girth.png)
-### SubJettiness
-Normalized with Jet size of 0.6 and Beta = 0.5
-![](./plots/tau.png)
-
 ## Varying the Value of Alpha_S in timelike showers 
 
 For the Blue Lines Alpha_S = 0.1
@@ -69,13 +57,19 @@ For the Black Lines Alpha_S = 0.16
 ### Gluons
 ![](./plots/alphaSplots/gluons_alpha_S.jpg)
 
-## Plotting with the Ecal data 
+For all the Plots the blue lines represent the Gluons and the Red lines represent the Quarks
+## Reclustering after softdrop with the defafault CA Algo
+
 ### E2
-![](./plots/e2-eflow.png)
-### Girth 
-![](./plots/girth-eflow.png)
-### Subjettiness
-![](./plots/tau-eflow.png)
+
+![](./plots/e2.png)
+### Girth
+![](./plots/girth.png)
+### SubJettiness
+Normalized with Jet size of 0.6 and Beta = 0.5
+![](./plots/tau.png)
+
+
 
 # Classification
 Now, Based on these Jet Variables, We try to calculate a gluon Jet and a Quark jet. The ROC Curve for such a classification is as follows
@@ -125,6 +119,57 @@ Learning Rates
 
 ![acc_relu](./plots/ml-plots/acc_relu.png)
 ![loss_relu](./plots/ml-plots/loss_relu.png)
+
+## Plotting with the Ecal data 
+Here Muon results are removed in a crude way by measuring the Jet mass and Ignoring the jets with 
+mass closer to that of muons.
+
+Better way will be made available soon as muon discrimation is done in Delphes
+### E2
+![](./plots/e2-eflow.png)
+### Girth 
+![](./plots/girth-eflow.png)
+### Subjettiness
+![](./plots/tau-eflow.png)
+
+# Classification
+
+## Random Forests
+![roc_forest-eflow](./plots/ml-plots/roc_forest-eflow.png)
+
+## Boosted Decision Trees
+![roc_boostedDT-eflow](./plots/ml-plots/roc_boosted_DT-eflow.png)
+
+# JetImages
+
+![jetimage-eflow](./plotting-code/jet_image-eflow.png)
+
+# Neural Network Classification
+Based on the JetImages provided above a neural network was employed to classify the images into 2 categories 
+## CNN Network
+
+![roc_cnn-eflow](./plots/ml-plots/roc_cnn-eflow.png)
+Now, If we Look at the Learning rates of the Network. By Plotting the Accuracy and the Loss with respect to the number of Epochs
+
+![acc_cnn-eflow](./plots/ml-plots/acc_cnn-eflow.png)
+![loss_cnn-eflow](./plots/ml-plots/loss_cnn-eflow.png)
+## FCC
+### MaxOut
+
+![roc_maxout-eflow](./plots/ml-plots/roc_maxout-eflow.png)
+Learning Rates
+
+![acc_maxout-eflow](./plots/ml-plots/acc_maxout-eflow.png)
+![loss_maxout-eflow](./plots/ml-plots/loss_maxout-eflow.png)
+### ReLU
+and a Fully connected network with ReLU activation neural network got an accuracy of 66.7311%
+
+![roc_relu-eflow](./plots/ml-plots/roc_relu-eflow.png)
+
+Learning Rates
+
+![acc_relu-eflow](./plots/ml-plots/acc_relu-eflow.png)
+![loss_relu-eflow](./plots/ml-plots/loss_relu-eflow.png)
 
 Now, I have to try to optimize the Hyper Parameters based on Validation sets
 
