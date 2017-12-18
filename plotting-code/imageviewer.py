@@ -27,5 +27,6 @@ plt.title('Gluon Jet Image')
 plt.imshow(grid2,extent=(-ran,ran,-ran,ran), cmap=kkk)
 plt.colorbar()
 #
-plt.savefig('jet_image-eflow.png',bbox_inches='tight')
+plt.show()
+#plt.savefig('jet_image-eflow.png',bbox_inches='tight')
 print('Done')

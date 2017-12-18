@@ -18,8 +18,6 @@ train_y = np.array(train_y)[:,1]
 #classifier = tf.contrib.tensor_forest.client.random_forest.TensorForestEstimator( params, model_dir="./tmp/")
 #classifier.fit(x=x_train, y=y_train)
 #classifier = tree.DecisionTreeClassifier()
-#classifier = RandomForestClassifier(n_jobs = -1,verbose = 1)
-#classifier = ExtraTreesClassifier(verbose = 1)
 classifier = AdaBoostClassifier()
 classifier.fit(train_x, train_y)
 
@@ -29,7 +27,25 @@ print('Test Labels')
 print(test_y[:20])
 print(y_out[:20])
 
-correct_ans = np.array(test_y)
-predicted_ans = np.array(y_out)
+correct_ans1 = np.array(test_y)
+predicted_ans1 = np.array(y_out)
+
+
+
+classifier = RandomForestClassifier(n_jobs = -1,verbose = 1)
+classifier.fit(train_x, train_y)
+
+#y_out = classifier.predict(x=x_test)
+y_out = classifier.predict_proba(test_x)
+print('Test Labels')
+print(test_y[:20])
+print(y_out[:20])
+
+correct_ans2 = np.array(test_y)
+predicted_ans2 = np.array(y_out)
+
+predicted_ans = list([predicted_ans1,predicted_ans2])
+correct_ans = list([correct_ans1,correct_ans2])
+
 im.roc_plot(predicted_ans,correct_ans)
 

@@ -60,25 +60,66 @@ For the Black Lines Alpha_S = 0.16
 For all the Plots the blue lines represent the Gluons and the Red lines represent the Quarks
 ## Reclustering after softdrop with the defafault CA Algo
 
-### E2
+Subjettiness Normalized with Jet size of 0.6 and Beta = 0.5
+### z_cut = 0.2 beta = 2
+![Histograms](./plots/genparticle/z0.2z2/histograms.png)
 
-![](./plots/e2.png)
-### Girth
-![](./plots/girth.png)
-### SubJettiness
-Normalized with Jet size of 0.6 and Beta = 0.5
-![](./plots/tau.png)
+### z_cut = 0.1 beta = 2
+![Histograms](./plots/genparticle/z0.1z2/histograms.png)
+
+### z_cut = 0.05 beta = 2
+![Histograms](./plots/genparticle/z0.05z2/histograms.png)
+
+### z_cut = 0.2 beta = 1
+![Histograms](./plots/genparticle/z0.2z1/histograms.png)
+
+### z_cut = 0.1 beta = 1
+![Histograms](./plots/genparticle/z0.1z1/histograms.png)
+
+### z_cut = 0.05 beta = 1
+![Histograms](./plots/genparticle/z0.05z1/histograms.png)
 
 
+### z_cut = 0.2 beta = 0
+![Histograms](./plots/genparticle/z0.2z0/histograms.png)
+
+### z_cut = 0.1 beta = 0
+![Histograms](./plots/genparticle/z0.1z0/histograms.png)
+
+### z_cut = 0.05 beta = 0
+![Histograms](./plots/genparticle/z0.05z0/histograms.png)
 
 # Classification
 Now, Based on these Jet Variables, We try to calculate a gluon Jet and a Quark jet. The ROC Curve for such a classification is as follows
 
-## Random Forests
-![roc_forest](./plots/ml-plots/roc_forest.png)
+### z_cut = 0.2 beta = 2
+![roc_curves](./plots/genparticle/z0.2z2/roc_curve.png)
 
-## Boosted Decision Trees
-![roc_boostedDT](./plots/ml-plots/roc_boosted_DT.png)
+### z_cut = 0.1 beta = 2
+![roc_curves](./plots/genparticle/z0.1z2/roc_curve.png)
+
+### z_cut = 0.05 beta = 2
+![roc_curves](./plots/genparticle/z0.05z2/roc_curve.png)
+
+### z_cut = 0.2 beta = 1
+![roc_curves](./plots/genparticle/z0.2z1/roc_curve.png)
+
+### z_cut = 0.1 beta = 1
+![roc_curves](./plots/genparticle/z0.1z1/roc_curve.png)
+
+### z_cut = 0.05 beta = 1
+![roc_curves](./plots/genparticle/z0.05z1/roc_curve.png)
+
+
+### z_cut = 0.2 beta = 0
+![roc_curves](./plots/genparticle/z0.2z0/roc_curve.png)
+
+### z_cut = 0.1 beta = 0
+![roc_curves](./plots/genparticle/z0.1z0/roc_curve.png)
+
+### z_cut = 0.05 beta = 0
+![roc_curves](./plots/genparticle/z0.05z0/roc_curve.png)
+
 
 # JetImages
 Jet Images were created based on references from these papers (https://arxiv.org/abs/1511.05190) and (https://arxiv.org/abs/1407.5675)
