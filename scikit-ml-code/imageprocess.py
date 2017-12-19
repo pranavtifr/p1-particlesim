@@ -62,4 +62,5 @@ def roc_plot(prelist,corlist,n_classes = 2):
       plt.title(title[k])
       plt.legend(loc="lower right")
     plt.savefig('roc_curve.png', bbox_inches='tight')   
+    #plt.show()
     plt.close()

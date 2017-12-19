@@ -12,10 +12,11 @@ Number of Events = 10000
 # FastJet Settings
 These plots were produced after the events are generated in pythia and then
 clustered into jets using anti-kt algorithm using E-Scheme
+# Jet Variables
 ## Grooming
    The jets were groomed using Soft-Drop algorithm
 
-## E_2
+### E_2
   This was the formula used for the Calculating e2
   
 
@@ -30,15 +31,22 @@ Where,
 
 Reference for the formula of e_2 [[https://arxiv.org/pdf/1704.03878.pdf]]
 
-## Girth
+### Girth
  The Formula for Girth
 
 ![](http://latex.codecogs.com/svg.latex?g%20%3D%20%5Csum%5Climits_%7B%20i%20%5Cin%20jet%7D%20%5Cfrac%7Bp_T%5Ei%7D%7Bp_T%5E%7Bjet%7D%7Dr_i)
 
 We can see this is the same as the formula for e_alpha with alpha = 1 and R = 1
 
-## Tau
+### Subjettiness
  Tau was calcualted using the routine from fastjet contrib
+Subjettiness Normalized with Jet size of 0.6 and Beta = 0.5
+
+### Mass of the Jet
+### Count
+  Number of Constituent tracks in the Jet
+### Two Point Moment
+![](http://latex.codecogs.com/gif.latex?T_%5Cbeta%20%3D%20%5Cfrac%7B1%7D%7B%28p_t%5E%7Bjet%7D%29%5E2%7D%5Csum%5Climits_%7Bi%2Cj%20%5Cin%20Jet%7D%28p_t%29_i%20%28p_t%29_j%20%5CDelta%20R%5E%5Cbeta)
 
 # Plots
 
@@ -57,69 +65,12 @@ For the Black Lines Alpha_S = 0.16
 ### Gluons
 ![](./plots/alphaSplots/gluons_alpha_S.jpg)
 
-For all the Plots the blue lines represent the Gluons and the Red lines represent the Quarks
-## Reclustering after softdrop with the defafault CA Algo
-
-Subjettiness Normalized with Jet size of 0.6 and Beta = 0.5
-### z_cut = 0.2 beta = 2
-![Histograms](./plots/genparticle/z0.2z2/histograms.png)
-
-### z_cut = 0.1 beta = 2
-![Histograms](./plots/genparticle/z0.1z2/histograms.png)
-
-### z_cut = 0.05 beta = 2
-![Histograms](./plots/genparticle/z0.05z2/histograms.png)
-
-### z_cut = 0.2 beta = 1
-![Histograms](./plots/genparticle/z0.2z1/histograms.png)
-
-### z_cut = 0.1 beta = 1
-![Histograms](./plots/genparticle/z0.1z1/histograms.png)
-
-### z_cut = 0.05 beta = 1
-![Histograms](./plots/genparticle/z0.05z1/histograms.png)
-
-
-### z_cut = 0.2 beta = 0
-![Histograms](./plots/genparticle/z0.2z0/histograms.png)
-
-### z_cut = 0.1 beta = 0
-![Histograms](./plots/genparticle/z0.1z0/histograms.png)
-
-### z_cut = 0.05 beta = 0
-![Histograms](./plots/genparticle/z0.05z0/histograms.png)
 
 # Classification
+For all the Plots the blue lines represent the Gluons and the Red lines represent the Quarks
+Reclustering after softdrop with the defafault CA Algo
+
 Now, Based on these Jet Variables, We try to calculate a gluon Jet and a Quark jet. The ROC Curve for such a classification is as follows
-
-### z_cut = 0.2 beta = 2
-![roc_curves](./plots/genparticle/z0.2z2/roc_curve.png)
-
-### z_cut = 0.1 beta = 2
-![roc_curves](./plots/genparticle/z0.1z2/roc_curve.png)
-
-### z_cut = 0.05 beta = 2
-![roc_curves](./plots/genparticle/z0.05z2/roc_curve.png)
-
-### z_cut = 0.2 beta = 1
-![roc_curves](./plots/genparticle/z0.2z1/roc_curve.png)
-
-### z_cut = 0.1 beta = 1
-![roc_curves](./plots/genparticle/z0.1z1/roc_curve.png)
-
-### z_cut = 0.05 beta = 1
-![roc_curves](./plots/genparticle/z0.05z1/roc_curve.png)
-
-
-### z_cut = 0.2 beta = 0
-![roc_curves](./plots/genparticle/z0.2z0/roc_curve.png)
-
-### z_cut = 0.1 beta = 0
-![roc_curves](./plots/genparticle/z0.1z0/roc_curve.png)
-
-### z_cut = 0.05 beta = 0
-![roc_curves](./plots/genparticle/z0.05z0/roc_curve.png)
-
 
 # JetImages
 Jet Images were created based on references from these papers (https://arxiv.org/abs/1511.05190) and (https://arxiv.org/abs/1407.5675)
@@ -129,37 +80,117 @@ If we look at the JetImages below we see that the jets for gluons are broader th
 We knew this from the physics variables such as girth which were related to the radial moments of the jets
 
 The JetImages seen below are average jet images over all the events.
+For various parameters in the SoftDrop algorithm
+### z_cut = 0.2 beta = 2
+![Histograms](./plots/genparticle/z0.2z2/histograms.png)
+![roc_curves](./plots/genparticle/z0.2z2/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/genparticle/z0.2z2/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/genparticle/z0.2z2/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/genparticle/z0.2z2/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/genparticle/z0.2z2/neural_relu-.png)
 
-![jetimage](./plots/jet_image.png)
+### z_cut = 0.1 beta = 2
+![Histograms](./plots/genparticle/z0.1z2/histograms.png)
+![roc_curves](./plots/genparticle/z0.1z2/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/genparticle/z0.1z2/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/genparticle/z0.1z2/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/genparticle/z0.1z2/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/genparticle/z0.1z2/neural_relu-.png)
 
-# Neural Network Classification
-Based on the JetImages provided above a neural network was employed to classify the images into 2 categories 
-## CNN Network
-A CNN got an accuracy of 65.9574%
+### z_cut = 0.05 beta = 2
+![Histograms](./plots/genparticle/z0.05z2/histograms.png)
+![roc_curves](./plots/genparticle/z0.05z2/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/genparticle/z0.05z2/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/genparticle/z0.05z2/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/genparticle/z0.05z2/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/genparticle/z0.05z2/neural_relu-.png)
 
-![roc_cnn](./plots/ml-plots/roc_cnn.png)
-Now, If we Look at the Learning rates of the Network. By Plotting the Accuracy and the Loss with respect to the number of Epochs
+### z_cut = 0.2 beta = 1
+![Histograms](./plots/genparticle/z0.2z1/histograms.png)
+![roc_curves](./plots/genparticle/z0.2z1/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/genparticle/z0.2z1/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/genparticle/z0.2z1/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/genparticle/z0.2z1/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/genparticle/z0.2z1/neural_relu-.png)
 
-![acc_cnn](./plots/ml-plots/acc_cnn.png)
-![loss_cnn](./plots/ml-plots/loss_cnn.png)
-## FCC
-### MaxOut
-Whereas a Fully connected network with Maxout activation neural network got an accuracy of 61.31531%
+### z_cut = 0.1 beta = 1
+![Histograms](./plots/genparticle/z0.1z1/histograms.png)
+![roc_curves](./plots/genparticle/z0.1z1/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/genparticle/z0.1z1/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/genparticle/z0.1z1/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/genparticle/z0.1z1/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/genparticle/z0.1z1/neural_relu-.png)
 
-![roc_maxout](./plots/ml-plots/roc_maxout.png)
-Learning Rates
+### z_cut = 0.05 beta = 1
+![Histograms](./plots/genparticle/z0.05z1/histograms.png)
+![roc_curves](./plots/genparticle/z0.05z1/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/genparticle/z0.05z1/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/genparticle/z0.05z1/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/genparticle/z0.05z1/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/genparticle/z0.05z1/neural_relu-.png)
 
-![acc_maxout](./plots/ml-plots/acc_maxout.png)
-![loss_maxout](./plots/ml-plots/loss_maxout.png)
-### ReLU
-and a Fully connected network with ReLU activation neural network got an accuracy of 66.7311%
+### z_cut = 0.2 beta = 0
+![Histograms](./plots/genparticle/z0.2z0/histograms.png)
+![roc_curves](./plots/genparticle/z0.2z0/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/genparticle/z0.2z0/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/genparticle/z0.2z0/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/genparticle/z0.2z0/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/genparticle/z0.2z0/neural_relu-.png)
 
-![roc_relu](./plots/ml-plots/roc_relu.png)
+### z_cut = 0.1 beta = 0
+![Histograms](./plots/genparticle/z0.1z0/histograms.png)
+![roc_curves](./plots/genparticle/z0.1z0/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/genparticle/z0.1z0/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/genparticle/z0.1z0/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/genparticle/z0.1z0/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/genparticle/z0.1z0/neural_relu-.png)
 
-Learning Rates
+### z_cut = 0.05 beta = 0
+![Histograms](./plots/genparticle/z0.05z0/histograms.png)
+![roc_curves](./plots/genparticle/z0.05z0/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/genparticle/z0.05z0/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/genparticle/z0.05z0/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/genparticle/z0.05z0/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/genparticle/z0.05z0/neural_relu-.png)
 
-![acc_relu](./plots/ml-plots/acc_relu.png)
-![loss_relu](./plots/ml-plots/loss_relu.png)
+
+
 
 ## Plotting with the Ecal data 
 Muons are elimated from the EFLowTracker based on PID

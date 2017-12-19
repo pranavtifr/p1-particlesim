@@ -36,7 +36,7 @@ void EventLoop(T &event,std::vector<float> &e2,double *a,int &taskid,int &numtas
    //So if no process should be discarded then the number of processes should be a divisor of the number of events
    for (Long64_t k = 0; k<chunksize;k++) {
      Long64_t jentry = (taskid*chunksize) +  k ;
-     if(jentry%100 == 0){
+     if(jentry%4000 == 0){
      std::cout<<std::setw(15)<<"Gathering event  "<<std::setw(10)<<jentry<<std::setw(15)<<
          " in the process "<<std::setw(2)<<taskid<<std::setw(5)<<"("<<(k*100.0)/chunksize<<"% )"<<std::endl;}
      event.GetEntry(jentry);
@@ -133,7 +133,7 @@ void write_to_file(std::vector<float> e2_main){
   std::ofstream file;
   file.open("data.txt");
     for(int i=0;i<e2_main.size();i++){
-    if(i%3 == 0) file<<std::endl;
+    if(i%6 == 0) file<<std::endl;
     file<<e2_main[i]<<"\t";
     }
   std::cout<<"Written to file"<<std::endl;

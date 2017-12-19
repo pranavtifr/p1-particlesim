@@ -46,21 +46,11 @@ def train_neural_network(x):
       loss_data.append(epoch_loss)
       print('Epoch', epoch+1, 'completed out of',hm_epochs,'loss:','%.6E' % Decimal(epoch_loss))
 #Plotting Code
-    plt.plot(epoch_data,accuracy_data)
-    plt.xlabel('Epochs')
-    plt.ylabel('Accuracy')
-    plt.savefig('acc_curve.png', bbox_inches='tight')   
-    plt.show()
-    plt.plot(epoch_data,loss_data)
-    plt.xlabel('Epochs')
-    plt.ylabel('Loss')
-    plt.savefig('loss_curve.png', bbox_inches='tight')   
-    plt.show()
 #End Plotting Code
     correct_ans = np.array(test_y)
     myans = tf.nn.softmax(prediction)
     predicted_ans = np.array(myans.eval({x:test_x}))
-    im.roc_plot(predicted_ans,correct_ans)
+    im.roc_plot(predicted_ans,correct_ans,epoch_data,accuracy_data,loss_data)
     print('Accuracy:',accuracy.eval({x:test_x, y:test_y}))
 
 if __name__ == '__main__':
