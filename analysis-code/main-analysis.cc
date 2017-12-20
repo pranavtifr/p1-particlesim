@@ -40,9 +40,10 @@ void EventLoop(T &event,std::vector<float> &e2,double *a,int &taskid,int &numtas
      std::cout<<std::setw(15)<<"Gathering event  "<<std::setw(10)<<jentry<<std::setw(15)<<
          " in the process "<<std::setw(2)<<taskid<<std::setw(5)<<"("<<(k*100.0)/chunksize<<"% )"<<std::endl;}
      event.GetEntry(jentry);
-     root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
-     //eflow_analysis(event.eflow_ET,event.eflow_Eta,event.eflow_Phi,event.eflow_E,event.eflow_size,e2,a); 
-     //eflow_analysis_track(event.EFlowTrack_PT,event.EFlowTrack_Eta,event.EFlowTrack_Phi,event.EFlowTrack_P,event.EFlowTrack_PID,event.EFlowTrack_size,e2,a); 
+     //root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
+     eflow_analysis(event.EFlowPhoton_ET,event.EFlowPhoton_Eta,event.EFlowPhoton_Phi,event.EFlowPhoton_E,event.EFlowPhoton_size,e2,a); 
+     eflow_analysis(event.EFlowNeutralHadron_ET,event.EFlowNeutralHadron_Eta,event.EFlowNeutralHadron_Phi,event.EFlowNeutralHadron_E,event.EFlowNeutralHadron_size,e2,a); 
+     eflow_analysis_track(event.EFlowTrack_PT,event.EFlowTrack_Eta,event.EFlowTrack_Phi,event.EFlowTrack_P,event.EFlowTrack_PID,event.EFlowTrack_size,e2,a); 
 
    }
 

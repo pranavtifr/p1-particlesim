@@ -6,7 +6,7 @@ do
   z_cut=$(sed '2!d' $file)
   beta=$(sed '3!d' $file)
   z=z
-  detector=genparticle
+  detector=eflow
   folder=z$z_cut$z$beta
   echo $folder
   cp $file ./analysis-code/settings-fastjet.txt

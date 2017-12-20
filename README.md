@@ -194,52 +194,115 @@ For various parameters in the SoftDrop algorithm
 
 ## Plotting with the Ecal data 
 Muons are elimated from the EFLowTracker based on PID
-Better way will be made available soon as muon discrimation is done in Delphes
-### E2
-![](./plots/e2-eflow.png)
-### Girth 
-![](./plots/girth-eflow.png)
-### Subjettiness
-![](./plots/tau-eflow.png)
 
-# Classification
+For various parameters in the SoftDrop algorithm
+### z_cut = 0.2 beta = 2
+![Histograms](./plots/eflow/z0.2z2/histograms.png)
+![roc_curves](./plots/eflow/z0.2z2/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/eflow/z0.2z2/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/eflow/z0.2z2/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/eflow/z0.2z2/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/eflow/z0.2z2/neural_relu-.png)
 
-## Random Forests
-![roc_forest-eflow](./plots/ml-plots/roc_forest-eflow.png)
+### z_cut = 0.1 beta = 2
+![Histograms](./plots/eflow/z0.1z2/histograms.png)
+![roc_curves](./plots/eflow/z0.1z2/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/eflow/z0.1z2/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/eflow/z0.1z2/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/eflow/z0.1z2/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/eflow/z0.1z2/neural_relu-.png)
 
-## Boosted Decision Trees
-![roc_boostedDT-eflow](./plots/ml-plots/roc_boosted_DT-eflow.png)
+### z_cut = 0.05 beta = 2
+![Histograms](./plots/eflow/z0.05z2/histograms.png)
+![roc_curves](./plots/eflow/z0.05z2/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/eflow/z0.05z2/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/eflow/z0.05z2/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/eflow/z0.05z2/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/eflow/z0.05z2/neural_relu-.png)
 
-# JetImages
+### z_cut = 0.2 beta = 1
+![Histograms](./plots/eflow/z0.2z1/histograms.png)
+![roc_curves](./plots/eflow/z0.2z1/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/eflow/z0.2z1/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/eflow/z0.2z1/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/eflow/z0.2z1/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/eflow/z0.2z1/neural_relu-.png)
 
-![jetimage-eflow](./plots/jet_image-eflow.png)
+### z_cut = 0.1 beta = 1
+![Histograms](./plots/eflow/z0.1z1/histograms.png)
+![roc_curves](./plots/eflow/z0.1z1/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/eflow/z0.1z1/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/eflow/z0.1z1/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/eflow/z0.1z1/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/eflow/z0.1z1/neural_relu-.png)
 
-# Neural Network Classification
-Based on the JetImages provided above a neural network was employed to classify the images into 2 categories 
-## CNN Network
+### z_cut = 0.05 beta = 1
+![Histograms](./plots/eflow/z0.05z1/histograms.png)
+![roc_curves](./plots/eflow/z0.05z1/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/eflow/z0.05z1/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/eflow/z0.05z1/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/eflow/z0.05z1/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/eflow/z0.05z1/neural_relu-.png)
 
-![roc_cnn-eflow](./plots/ml-plots/roc_cnn-eflow.png)
-Now, If we Look at the Learning rates of the Network. By Plotting the Accuracy and the Loss with respect to the number of Epochs
+### z_cut = 0.2 beta = 0
+![Histograms](./plots/eflow/z0.2z0/histograms.png)
+![roc_curves](./plots/eflow/z0.2z0/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/eflow/z0.2z0/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/eflow/z0.2z0/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/eflow/z0.2z0/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/eflow/z0.2z0/neural_relu-.png)
 
-![acc_cnn-eflow](./plots/ml-plots/acc_cnn-eflow.png)
-![loss_cnn-eflow](./plots/ml-plots/loss_cnn-eflow.png)
-## FCC
-### MaxOut
+### z_cut = 0.1 beta = 0
+![Histograms](./plots/eflow/z0.1z0/histograms.png)
+![roc_curves](./plots/eflow/z0.1z0/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/eflow/z0.1z0/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/eflow/z0.1z0/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/eflow/z0.1z0/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/eflow/z0.1z0/neural_relu-.png)
 
-![roc_maxout-eflow](./plots/ml-plots/roc_maxout-eflow.png)
-Learning Rates
-
-![acc_maxout-eflow](./plots/ml-plots/acc_maxout-eflow.png)
-![loss_maxout-eflow](./plots/ml-plots/loss_maxout-eflow.png)
-### ReLU
-and a Fully connected network with ReLU activation neural network got an accuracy of 66.7311%
-
-![roc_relu-eflow](./plots/ml-plots/roc_relu-eflow.png)
-
-Learning Rates
-
-![acc_relu-eflow](./plots/ml-plots/acc_relu-eflow.png)
-![loss_relu-eflow](./plots/ml-plots/loss_relu-eflow.png)
+### z_cut = 0.05 beta = 0
+![Histograms](./plots/eflow/z0.05z0/histograms.png)
+![roc_curves](./plots/eflow/z0.05z0/roc_curve.png)
+#### Jet Image
+![jet_image](./plots/eflow/z0.05z0/jet-image.png)
+#### Convolutional Neural Netowork
+![neural_cnn](./plots/eflow/z0.05z0/neural_cnn-.png)
+#### MaxOut FC Neural Netowrk
+![neural_maxout](./plots/eflow/z0.05z0/neural_maxout-.png)
+#### ReLU FC Neural Network
+![neural_relu](./plots/eflow/z0.05z0/neural_relu-.png)
 
 Now, I have to try to optimize the Hyper Parameters based on Validation sets
 

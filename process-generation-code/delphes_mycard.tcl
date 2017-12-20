@@ -783,8 +783,11 @@ module TreeWriter TreeWriter {
 # add Branch InputArray BranchName BranchClass
   add Branch Delphes/allParticles Particle GenParticle
 
-  add Branch EFlowMerger/eflow eflow Tower
   add Branch HCal/eflowTracks EFlowTrack Track
+  add Branch ECal/eflowPhotons EFlowPhoton Tower
+  add Branch HCal/eflowNeutralHadrons EFlowNeutralHadron Tower
+
+  add Branch EFlowMerger/eflow eflow Tower
 
   add Branch UniqueObjectFinder/jets Jet Jet
   add Branch UniqueObjectFinder/electrons Electron Electron

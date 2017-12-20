@@ -1,5 +1,5 @@
 # Overall Settings
-Main:numberOfEvents = 1000000
+Main:numberOfEvents = 100000
 
 
 
