@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 kkk=cm.gist_stern # Put the Plotting Style here
-ran = 0.25 # Range of the Plot
+ran = 0.4 # Range of the Plot
 temp = np.loadtxt('quark_1e5_13tev-eflow.img')
 temp2 = np.loadtxt('gluon_1e5_13tev-eflow.img')
 

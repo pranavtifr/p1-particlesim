@@ -46,14 +46,14 @@ do
   cp ./plotting-code/quark_1e5_13tev-eflow.img ./tensorflow-code/quark.img
   cp ./plotting-code/gluon_1e5_13tev-eflow.img ./tensorflow-code/gluon.img
 
-  cd ./tensorflow-code
-  echo "$PWD"
-  echo ' Now all tensorflow codes will run. This will be extremely slow. Go do something else'
-  ./stash.sh
-  cp *.png ../plots/$detector/$folder/
-  echo 'Moved the Tensorflow Stuff'
-  cd ..
-  echo "$PWD"
+  #cd ./tensorflow-code
+  #echo "$PWD"
+  #echo ' Now all tensorflow codes will run. This will be extremely slow. Go do something else'
+  #./stash.sh
+  #cp *.png ../plots/$detector/$folder/
+  #echo 'Moved the Tensorflow Stuff'
+  #cd ..
+  #echo "$PWD"
   echo 'Done one Iteration'
 done
 

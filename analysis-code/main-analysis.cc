@@ -23,8 +23,10 @@ namespace dataevents {
 void write_to_file(std::vector<float> e2_main);
 void add_to_hist(std::vector<float> e2_main,TH1 *e2_hist);
 void hist_to_file(TH1 *e2,double *a);
-void eflow_analysis(Float_t *ET,Float_t *eta,Float_t *phi,Float_t *E,Int_t size,std::vector<float> &e2,double *a);
-void eflow_analysis_track(Float_t *ET,Float_t *eta,Float_t *phi,Float_t *E,Int_t* PID,Int_t size,std::vector<float> &e2,double *a);
+void eflow_analysis(Float_t *ph_ET,Float_t *ph_eta,Float_t *ph_phi,Float_t *ph_E,Int_t ph_size,
+            Float_t *nuH_ET,Float_t *nuH_eta,Float_t *nuH_phi,Float_t *nuH_E,Int_t nuH_size,
+            Float_t *tr_ET,Float_t *tr_eta,Float_t *tr_phi,Float_t *tr_E,Int_t *tr_PID,Int_t tr_size,
+                    std::vector<float> &e2,double *a);
 template <typename T>
 void EventLoop(T &event,std::vector<float> &e2,double *a,int &taskid,int &numtasks)
 {
@@ -40,43 +42,54 @@ void EventLoop(T &event,std::vector<float> &e2,double *a,int &taskid,int &numtas
      std::cout<<std::setw(15)<<"Gathering event  "<<std::setw(10)<<jentry<<std::setw(15)<<
          " in the process "<<std::setw(2)<<taskid<<std::setw(5)<<"("<<(k*100.0)/chunksize<<"% )"<<std::endl;}
      event.GetEntry(jentry);
-     //root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
-     eflow_analysis(event.EFlowPhoton_ET,event.EFlowPhoton_Eta,event.EFlowPhoton_Phi,event.EFlowPhoton_E,event.EFlowPhoton_size,e2,a); 
-     eflow_analysis(event.EFlowNeutralHadron_ET,event.EFlowNeutralHadron_Eta,event.EFlowNeutralHadron_Phi,event.EFlowNeutralHadron_E,event.EFlowNeutralHadron_size,e2,a); 
-     eflow_analysis_track(event.EFlowTrack_PT,event.EFlowTrack_Eta,event.EFlowTrack_Phi,event.EFlowTrack_P,event.EFlowTrack_PID,event.EFlowTrack_size,e2,a); 
-
+     root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
+     /*
+     eflow_analysis(event.EFlowPhoton_ET,event.EFlowPhoton_Eta,event.EFlowPhoton_Phi,event.EFlowPhoton_E,event.EFlowPhoton_size,
+        event.EFlowNeutralHadron_ET,event.EFlowNeutralHadron_Eta,event.EFlowNeutralHadron_Phi,event.EFlowNeutralHadron_E,event.EFlowNeutralHadron_size, 
+        event.EFlowTrack_PT,event.EFlowTrack_Eta,event.EFlowTrack_Phi,event.EFlowTrack_P,event.EFlowTrack_PID,event.EFlowTrack_size,e2,a); 
+        */
    }
-
 }
-void eflow_analysis_track(Float_t *ET,Float_t *eta,Float_t *phi,Float_t *E,Int_t* PID,Int_t size,std::vector<float> &e2,double *a){
-  Float_t px[size];
-  Float_t py[size];
-  Float_t pz[size];
-  Int_t status[size];
-  for(int i=0;i<size;i++){
-    px[i] = ET[i]*std::cos(phi[i]);
-    py[i] = ET[i]*std::sin(phi[i]);
-    pz[i] = ET[i]*std::sinh(eta[i]);
-    status[i] = 1;
-  }
-   root_to_fastjet(px,py,pz,E,status,PID,size,e2,a);
 
-}
-void eflow_analysis(Float_t *ET,Float_t *eta,Float_t *phi,Float_t *E,Int_t size,std::vector<float> &e2,double *a){
-  Float_t px[size];
-  Float_t py[size];
-  Float_t pz[size];
-  Int_t status[size];
-  Int_t PID[size];
-  for(int i=0;i<size;i++){
-    px[i] = ET[i]*std::cos(phi[i]);
-    py[i] = ET[i]*std::sin(phi[i]);
-    pz[i] = ET[i]*std::sinh(eta[i]);
-    status[i] = 1;
-    PID[i] = 0;
-  }
-   root_to_fastjet(px,py,pz,E,status,PID,size,e2,a);
+void eflow_analysis(Float_t *ph_ET,Float_t *ph_eta,Float_t *ph_phi,Float_t *ph_E,Int_t ph_size,
+            Float_t *nuH_ET,Float_t *nuH_eta,Float_t *nuH_phi,Float_t *nuH_E,Int_t nuH_size,
+            Float_t *tr_ET,Float_t *tr_eta,Float_t *tr_phi,Float_t *tr_E,Int_t *tr_PID,Int_t tr_size,
+            std::vector<float> &e2,double *a){
+  Float_t px[ph_size + nuH_size + tr_size];
+  Float_t py[ph_size + nuH_size + tr_size];
+  Float_t pz[ph_size + nuH_size + tr_size];
+  Float_t E[ph_size + nuH_size + tr_size];
+  Int_t status[ph_size + nuH_size + tr_size];
+  Int_t PID[ph_size + nuH_size + tr_size];
+  printf("TOTAL SIZE OF INPUTS: %ld %ld %ld %ld\n",ph_size + nuH_size + tr_size,ph_size,nuH_size,tr_size);
+  for(int i=0;i<ph_size;i++){
+        px[i] = ph_ET[i]*std::cos(ph_phi[i]);
+        py[i] = ph_ET[i]*std::sin(ph_phi[i]);
+        pz[i] = ph_ET[i]*std::sinh(ph_eta[i]);
+        E[i] = ph_E[i];
+        status[i] = 1;
+        PID[i] = 22;
+      }
 
+  for(int i=0;i<nuH_size;i++){
+        px[ph_size + i] = nuH_ET[i]*std::cos(nuH_phi[i]);
+        py[ph_size + i] = nuH_ET[i]*std::sin(nuH_phi[i]);
+        pz[ph_size + i] = nuH_ET[i]*std::sinh(nuH_eta[i]);
+        E[ph_size + i] = nuH_E[i];
+        status[ph_size + i] = 1;
+        PID[ph_size + i] = 2200;
+      }
+
+  for(int i=0;i<tr_size;i++){
+        px[ph_size + nuH_size + i] = tr_ET[i]*std::cos(tr_phi[i]);
+        py[ph_size + nuH_size + i] = tr_ET[i]*std::sin(tr_phi[i]);
+        pz[ph_size + nuH_size + i] = tr_ET[i]*std::sinh(tr_eta[i]);
+        E[ph_size + nuH_size + i] = tr_E[i];
+        status[ph_size + nuH_size + i] = 1;
+        PID[ph_size + nuH_size + i] = tr_PID[i];
+      }
+
+   root_to_fastjet(px,py,pz,E,status,PID,ph_size + nuH_size + tr_size,e2,a);
 }
 
 //Main Function

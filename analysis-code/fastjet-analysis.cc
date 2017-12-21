@@ -7,10 +7,10 @@
 #include "fastjet/contrib/Nsubjettiness.hh"
 #define RES 56 //Image resolution
 #define PI 3.1415
-#define RANGE 0.5
+#define RANGE 0.2
 double girth(fastjet::PseudoJet this_jet);
 double Nsubjet(fastjet::PseudoJet this_jet);
-double e_alpha(fastjet::PseudoJet this_jet,double Rparam,double alpha);
+double e_alpha(fastjet::PseudoJet this_jet,double Rparam,double k,double alpha);
 int count(fastjet::PseudoJet jet);
 double two_point_moment(fastjet::PseudoJet this_jet);
 void jet_imagemaker(fastjet::PseudoJet jet){
@@ -32,12 +32,21 @@ void jet_imagemaker(fastjet::PseudoJet jet){
     else{
       continue;}
   }
+
+ double sum = 0;
+ for(int i=0;i<RES*RES;i++)
+   sum+= image[i];
+
+ for(int i=0;i<RES*RES;i++)
+   image[i] /= sum;
+
   std::ofstream f("images.txt",std::ios::app); 
   for(int i=0;i<RES;i++){
   for(int j=0;j<RES;j++){
     f<<image[i*RES + j]<<"\t";
   }
   }
+
   f<<std::endl;
 
 }
@@ -80,7 +89,7 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
       std::cout << "Strategy adopted by FastJet was "
                 << clustSeq.strategy_string() << std::endl << std::endl;
     }
-    std::vector<fastjet::PseudoJet> jets = fastjet::sorted_by_pt(clustSeq.inclusive_jets(0.0));
+    std::vector<fastjet::PseudoJet> jets = fastjet::sorted_by_pt(clustSeq.inclusive_jets(350.0));
   
   fastjet::contrib::SoftDrop sd(beta, z_cut);
   //std::cout << "SoftDrop groomer is: " << sd.description() << std::endl;
@@ -111,28 +120,38 @@ void root_to_fastjet(Float_t *px,Float_t *py,Float_t *pz,Float_t *e,Int_t *parti
   double m = 0;//Mass
   double m2p = 0;//Two Point Moment
   for( unsigned ijet = 0; ijet < soft_jets.size();ijet++){
-    if(soft_jets[ijet].pt() < ptcutoff) continue;
+    if(soft_jets[ijet].pt() < ptcutoff) {continue;}
     //if((soft_jets[ijet].m() < 100) && (soft_jets[ijet].m() > 80)) continue;
     jet_imagemaker(soft_jets[ijet]);
-     e_2 = e_alpha(soft_jets[ijet],Rparam,alpha);
+    // 5 Different Anularities
+    cnt = e_alpha(soft_jets[ijet],Rparam,0,0);
+    g = e_alpha(soft_jets[ijet],Rparam,1,1);
+    m = e_alpha(soft_jets[ijet],Rparam,1,2);
+    e_2 = e_alpha(soft_jets[ijet],Rparam,1,0.5);
+    m2p = e_alpha(soft_jets[ijet],Rparam,2,0);
+     tau = Nsubjet(soft_jets[ijet]);
+
+     // 5 Different Variables
+    /* e_2 = e_alpha(soft_jets[ijet],Rparam,1,alpha);
      tau = Nsubjet(soft_jets[ijet]);
      g = girth(soft_jets[ijet]);
       cnt = count(soft_jets[ijet]); 
       m = soft_jets[ijet].m();
       m2p = two_point_moment(soft_jets[ijet]);
+*/
 
      if(!std::isfinite(-log(e_2))) break;
      if(!std::isfinite(-log(tau))) break;
      if(!std::isfinite(-log(g))) break;
-     if(!std::isfinite(m)) break;
-     if(!std::isfinite(m2p)) break;
+     if(!std::isfinite(-log(m))) break;
+     if(!std::isfinite(-log(m2p))) break;
       
       e2.push_back(-log(e_2));
       e2.push_back(-log(tau));
       e2.push_back(-log(g));
       e2.push_back(cnt);
-      e2.push_back(m);
-      e2.push_back(m2p);
+      e2.push_back(-log(m));
+      e2.push_back(-log(m2p));
      break;
   }//Jet Constituent Loop 
 }//Function Ends here
@@ -155,11 +174,11 @@ int count(fastjet::PseudoJet this_jet){
     return constituents.size();
 }
 
-double e_alpha(fastjet::PseudoJet this_jet,double Rparam,double alpha){
+double e_alpha(fastjet::PseudoJet this_jet,double Rparam,double k,double alpha){
     double e_2 = 0;
     std::vector<fastjet::PseudoJet> constituents = this_jet.constituents();
     for( unsigned iconst = 0;iconst < constituents.size();iconst++){
-    e_2 += constituents[iconst].pt()/this_jet.pt() * pow(this_jet.delta_R(constituents[iconst])/Rparam,alpha);
+    e_2 += pow(constituents[iconst].pt()/this_jet.pt(),k) * pow(this_jet.delta_R(constituents[iconst])/Rparam,alpha);
     }
     return e_2;
 }
@@ -173,5 +192,5 @@ double Nsubjet(fastjet::PseudoJet this_jet){
 }
 
 double girth(fastjet::PseudoJet this_jet){
-    return e_alpha(this_jet,1,1); 
+    return e_alpha(this_jet,1,1,1); 
 }

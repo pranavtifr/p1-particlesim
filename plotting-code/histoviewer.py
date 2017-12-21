@@ -6,7 +6,8 @@ temp = np.loadtxt('quark_1e5_13tev-eflow.txt')
 temp2 = np.loadtxt('gluon_1e5_13tev-eflow.txt')
 #temp = np.loadtxt('quark_1e5_13tev.txt')
 #temp2 = np.loadtxt('gluon_1e5_13tev.txt')
-Titles = ['E2','SubJettiness','Girth','Count','Jet Mass','Two Point Moment']
+#Titles = ['E2','SubJettiness','Girth','Count','Jet Mass','Two Point Moment']
+Titles = ['LHA','SubJettiness','Width','Multiplicity','Mass','pTD']
 #save = ['e2.png','tau.png','girth.png']
 #save = ['e2-eflow.png','tau-eflow.png','girth-eflow.png']
 save = 'histograms.png'
@@ -24,5 +25,4 @@ for i in range(len(temp[1,:])):
 plt.savefig(save,bbox='tight')
 plt.tight_layout()
 plt.legend(loc='upper right')
-#plt.show()
 plt.close()

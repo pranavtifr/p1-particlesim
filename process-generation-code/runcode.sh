@@ -1,6 +1,6 @@
 #!/bin/bash
 rm events-*
-if [ -f ../data/gluon_1e5_13tev-eflow.root ] ; then
+if [ -f ../data/gluon_1e6_13tev-eflow.root ] ; then
   echo "Removing the preexisting root files"
   rm ../data/*1e6_13tev-eflow.root
 fi
