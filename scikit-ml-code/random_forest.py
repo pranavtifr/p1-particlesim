@@ -23,9 +23,6 @@ classifier.fit(train_x, train_y)
 
 #y_out = classifier.predict(x=x_test)
 y_out = classifier.predict_proba(test_x)
-print('Test Labels')
-print(test_y[:20])
-print(y_out[:20])
 
 correct_ans1 = np.array(test_y)
 predicted_ans1 = np.array(y_out)
@@ -37,9 +34,6 @@ classifier.fit(train_x, train_y)
 
 #y_out = classifier.predict(x=x_test)
 y_out = classifier.predict_proba(test_x)
-print('Test Labels')
-print(test_y[:20])
-print(y_out[:20])
 
 correct_ans2 = np.array(test_y)
 predicted_ans2 = np.array(y_out)
@@ -48,4 +42,4 @@ predicted_ans = list([predicted_ans1,predicted_ans2])
 correct_ans = list([correct_ans1,correct_ans2])
 
 im.roc_plot(predicted_ans,correct_ans)
-
+print('Decision Trees done')

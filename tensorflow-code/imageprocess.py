@@ -47,7 +47,8 @@ def roc_plot(predicted_ans,correct_ans,ep,acc,loss,n_classes = 2):
     for i in range(n_classes):
         fpr[i], tpr[i], _ = roc_curve(correct_ans[:, i], predicted_ans[:, i])
         roc_auc[i] = auc(fpr[i], tpr[i])
-
+    return roc_auc
+    '''
     plt.figure()
     host = host_subplot(122, axes_class=AA.Axes)
     host.plot(ep,acc,label='Accuracy')
@@ -77,3 +78,4 @@ def roc_plot(predicted_ans,correct_ans,ep,acc,loss,n_classes = 2):
     plt.tight_layout()
     plt.savefig('roc_curve.png', bbox_inches='tight')   
     plt.close()
+    '''

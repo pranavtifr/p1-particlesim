@@ -15,8 +15,8 @@ batch_size = 500
 x = tf.placeholder('float', [None, res])
 y = tf.placeholder('float')
 
-def train_neural_network(x):
-  prediction = convnet.neural_network_model(x)
+def train_neural_network(x,k):
+  prediction = convnet.neural_network_model(x,k)
   #prediction = fcc.neural_network_model_maxout(x)
   #prediction = fcc.neural_network_model_relu(x)
   cost = tf.reduce_mean( tf.nn.softmax_cross_entropy_with_logits(logits=prediction,labels=y) )
@@ -50,11 +50,13 @@ def train_neural_network(x):
     correct_ans = np.array(test_y)
     myans = tf.nn.softmax(prediction)
     predicted_ans = np.array(myans.eval({x:test_x}))
-    im.roc_plot(predicted_ans,correct_ans,epoch_data,accuracy_data,loss_data)
+    print(im.roc_plot(predicted_ans,correct_ans,epoch_data,accuracy_data,loss_data))
     print('Accuracy:',accuracy.eval({x:test_x, y:test_y}))
 
 if __name__ == '__main__':
   print('Begin')
-  train_neural_network(x)
+  for i in range(7):
+    print("Conv Layer Resolution",2*i + 3)
+    train_neural_network(x,2*i + 3)
   print('End')
 

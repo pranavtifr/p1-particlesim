@@ -38,16 +38,15 @@ void EventLoop(T &event,std::vector<float> &e2,double *a,int &taskid,int &numtas
    //So if no process should be discarded then the number of processes should be a divisor of the number of events
    for (Long64_t k = 0; k<chunksize;k++) {
      Long64_t jentry = (taskid*chunksize) +  k ;
-     if(jentry%4000 == 0){
+     if(jentry%8000 == 0){
      std::cout<<std::setw(15)<<"Gathering event  "<<std::setw(10)<<jentry<<std::setw(15)<<
          " in the process "<<std::setw(2)<<taskid<<std::setw(5)<<"("<<(k*100.0)/chunksize<<"% )"<<std::endl;}
      event.GetEntry(jentry);
-     root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
-     /*
+   //  root_to_fastjet(event.Particle_Px,event.Particle_Py,event.Particle_Pz,event.Particle_E,event.Particle_Status,event.Particle_PID,event.Particle_size,e2,a);
+     
      eflow_analysis(event.EFlowPhoton_ET,event.EFlowPhoton_Eta,event.EFlowPhoton_Phi,event.EFlowPhoton_E,event.EFlowPhoton_size,
         event.EFlowNeutralHadron_ET,event.EFlowNeutralHadron_Eta,event.EFlowNeutralHadron_Phi,event.EFlowNeutralHadron_E,event.EFlowNeutralHadron_size, 
         event.EFlowTrack_PT,event.EFlowTrack_Eta,event.EFlowTrack_Phi,event.EFlowTrack_P,event.EFlowTrack_PID,event.EFlowTrack_size,e2,a); 
-        */
    }
 }
 
@@ -61,7 +60,6 @@ void eflow_analysis(Float_t *ph_ET,Float_t *ph_eta,Float_t *ph_phi,Float_t *ph_E
   Float_t E[ph_size + nuH_size + tr_size];
   Int_t status[ph_size + nuH_size + tr_size];
   Int_t PID[ph_size + nuH_size + tr_size];
-  printf("TOTAL SIZE OF INPUTS: %ld %ld %ld %ld\n",ph_size + nuH_size + tr_size,ph_size,nuH_size,tr_size);
   for(int i=0;i<ph_size;i++){
         px[i] = ph_ET[i]*std::cos(ph_phi[i]);
         py[i] = ph_ET[i]*std::sin(ph_phi[i]);

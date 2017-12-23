@@ -22,7 +22,7 @@ for i in range(len(temp[1,:])):
   plt.xlim([0,max(t,t2)*1.1])
   #plt.savefig(save[i])
   #plt.close()
-plt.savefig(save,bbox='tight')
 plt.tight_layout()
 plt.legend(loc='upper right')
+plt.savefig(save,bbox='tight')
 plt.close()

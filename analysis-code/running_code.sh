@@ -4,7 +4,7 @@ if [ -f "event.root" ]; then
   rm event.*
 fi
 
-for f in ~/work-stuff/data/*_1e5_13tev-eflow.root
+for f in ~/work-stuff/data/*_1e6_13tev-eflow.root
 do
   echo "$f"
   ln -s $f ./event.root

@@ -10,9 +10,9 @@ keep_prob = tf.placeholder(tf.float32)
 
 
 
-def neural_network_model(x):
+def neural_network_model(x,k = 11):
   print("Convolutional Neural Network")
-  weights = {'W_conv1':tf.Variable(tf.random_normal([11,11,1,32])),
+  weights = {'W_conv1':tf.Variable(tf.random_normal([k,k,1,32])),
              'W_conv2':tf.Variable(tf.random_normal([3,3,32,32])),
              'W_conv3':tf.Variable(tf.random_normal([3,3,32,32])),
              'W_fc':tf.Variable(tf.random_normal([fi*fi*32,64])),

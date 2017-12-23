@@ -33,12 +33,14 @@ void jet_imagemaker(fastjet::PseudoJet jet){
       continue;}
   }
 
+  /*
  double sum = 0;
  for(int i=0;i<RES*RES;i++)
    sum+= image[i];
 
  for(int i=0;i<RES*RES;i++)
    image[i] /= sum;
+*/
 
   std::ofstream f("images.txt",std::ios::app); 
   for(int i=0;i<RES;i++){
